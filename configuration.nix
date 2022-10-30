@@ -66,11 +66,11 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
+  console = {
   #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
+    keyMap = "neo";
   #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -82,7 +82,8 @@
   
 
   # Configure keymap in X11
-  # services.xserver.layout = "us";
+  services.xserver.layout = "de";
+  services.xserver.xkbVariant = "neo";
   # services.xserver.xkbOptions = {
   #   "eurosign:e";
   #   "caps:escape" # map caps to escape.
