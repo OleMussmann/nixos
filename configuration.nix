@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, system, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -131,6 +131,8 @@
     wget
     ncdu
     tree
+    git
+    inputs.nps.defaultPackage.x86_64-linux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
