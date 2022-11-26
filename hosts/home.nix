@@ -9,6 +9,7 @@
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
+    stateVersion = "22.05";
 
     packages = with pkgs; [
       # Terminal
@@ -116,7 +117,6 @@
     ];
     #file.".config/wall".source = ../modules/themes/wall;
     #file.".config/wall.mp4".source = ../modules/themes/wall.mp4;
-    stateVersion = "22.05";
   };
 
   programs = {

@@ -2,7 +2,7 @@
 
 let
   pkgs = import nixpkgs {
-    inherit system;
+    #inherit system;
     config.allowUnfree = true;                              # Allow proprietary software
   };
 in
@@ -17,7 +17,7 @@ in
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user };   # Pass flake variable
+        home-manager.extraSpecialArgs = { inherit user; };  # Pass flake variable
         home-manager.users.${user} = {
           imports = [(import ./home.nix)] ++ [(import ./vm/home.nix)];
         };
