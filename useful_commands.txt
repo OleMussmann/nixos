@@ -1,3 +1,4 @@
 nix flake check
 nix flake update
 nix flake update --commit-lock-file
+nixos-rebuild switch --flake .#<hostname>
