@@ -19,4 +19,23 @@
       libreoffice      # Office Packages
     ];
   };
+
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      ll = "ls -l";
+      trash = "gio trash";
+      update = "cd /home/ole/.setup && nix flake update --commit-lock-file && cd -";
+      upgrade = "sudo nixos-rebuild switch --flake /home/ole/.setup#nixos-vm";
+    };
+    history = {
+      size = 100000;
+      path = "${config.xdg.dataHome}/zsh/history";
+    };
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" "colored-man-pages" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
+      theme = "robbyrussell";
+    };
+  };
 }
