@@ -7,11 +7,11 @@ let
   };
 in
 {
-  vm = nixpkgs.lib.nixosSystem {                            # VM profile
-    system = "x86_64-linux";                                  # System architecture
+  nixos-vm = nixpkgs.lib.nixosSystem {                      # VM profile
+    system = "x86_64-linux";                                # System architecture
     specialArgs = { inherit inputs user location; };        # Pass flake variable
     modules = [                                             # Modules that are used.
-      ./vm
+      ./nixos-vm
       ./shared.nix
 
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
