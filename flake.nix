@@ -13,6 +13,7 @@
 
     # Nix Package Search
     nps.url = "github:OleMussmann/Nix-Package-Search";
+    nps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Output config, or config for NixOS system
