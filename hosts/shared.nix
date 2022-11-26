@@ -7,6 +7,7 @@
       killall
       ncdu
       neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      tmux
       tree
       wget
     ];
