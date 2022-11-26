@@ -13,27 +13,49 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  #fileSystems."/" =
-  #  { device = "none";
-  #    fsType = "tmpfs";
+  fileSystems."/" =
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
+    };
+
+  fileSystems."/home" =
+    { device = "rpool/nixos/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix" =
+    { device = "rpool/nixos/nix";
+      fsType = "zfs";
+    };
+
+  fileSystems."/persist" =
+    { device = "rpool/nixos/persist";
+      fsType = "zfs";
+    };
+
+  #fileSystems."/nix/store" =
+  #  { device = "/nix/store";
+  #    fsType = "none";
+  #    options = [ "bind" ];
   #  };
 
-  # fileSystems."/home" =
-  #   { device = "rpool/nixos/home";
-  #     fsType = "zfs";
-  #   };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/DD53-602D";
+      fsType = "vfat";
+    };
 
-  # fileSystems."/nix" =
-  #   { device = "rpool/nixos/nix";
-  #     fsType = "zfs";
-  #   };
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/ca9caeff-f086-46d3-9af5-42a09efe5d0b"; }
+    ];
 
-  # fileSystems."/persist" =
-  #   { device = "rpool/nixos/persist";
-  #     fsType = "zfs";
-  #   };
-
-  swapDevices = [ ];
+  # ZFS settings
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "731b93fc";
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.zfs.devNodes = "/dev/disk/by-path";
+  services.zfs.autoScrub.enable = true;
+  services.zfs.trim.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

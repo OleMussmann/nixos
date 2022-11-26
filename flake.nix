@@ -28,16 +28,5 @@
         inherit inputs nixpkgs home-manager user location;  # Also inherit home-manager so it does not need to be defined here.
         }
       );
-
-  # You can define many systems in one Flake file.
-  # NixOS will choose one based on your hostname.
-  #
-  # nixosConfigurations."nixos2" = nixpkgs.lib.nixosSystem {
-  #   system = "x86_64-linux";
-  #   modules = [
-  #     ./configuration2.nix
-  #   ];
-  # };
-
   };
 }

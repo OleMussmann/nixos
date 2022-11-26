@@ -1,8 +1,6 @@
 { inputs, nixpkgs, home-manager, user, location, ... }:
 
 let
-  system = "x86_64-linux";                                  # System architecture
-
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;                              # Allow proprietary software
@@ -10,18 +8,18 @@ let
 in
 {
   vm = nixpkgs.lib.nixosSystem {                            # VM profile
-    inherit system;
+    system = "x86_64-linux";                                  # System architecture
     specialArgs = { inherit inputs user location; };        # Pass flake variable
     modules = [                                             # Modules that are used.
-      ./desktop
-      ./configuration.nix
+      ./vm
+      ./shared.nix
 
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit user };   # Pass flake variable
         home-manager.users.${user} = {
-          imports = [(import ./home.nix)] ++ [(import ./desktop/home.nix)];
+          imports = [(import ./home.nix)] ++ [(import ./vm/home.nix)];
         };
       }
     ];

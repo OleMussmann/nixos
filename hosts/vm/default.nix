@@ -2,48 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, system, ... }:
+{ config, pkgs, inputs, system, user, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix ./zfs.nix ./vm-guest.nix
-    ];
-
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ];
-  };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-id/ata-QEMU_HARDDISK_QM00001-part1";
-      fsType = "vfat";
-    };
-
-  fileSystems."/home" =
-    { device = "rpool/nixos/home";
-      fsType = "zfs";
-    };
-
-  fileSystems."/nix" =
-    { device = "rpool/nixos/nix";
-      fsType = "zfs";
-    };
-
-  fileSystems."/persist" =
-    { device = "rpool/nixos/persist";
-      fsType = "zfs";
-    };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/ca9caeff-f086-46d3-9af5-42a09efe5d0b"; }
-    ];
+    [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
+    [(import ../../modules/programs/games.nix)];          # Gaming
 
   # Use systemd boot (EFI only)
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.systemd-boot.consoleMode = "max";
   boot.loader.systemd-boot.editor = false;
   boot.loader.systemd-boot.memtest86.enable = true;
@@ -77,11 +45,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  
 
   # Configure keymap in X11
   services.xserver.layout = "de";
@@ -90,6 +56,10 @@
   #   "eurosign:e";
   #   "caps:escape" # map caps to escape.
   # };
+
+  # Enable VM Guest features
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -104,21 +74,17 @@
   # Don't allow mutation of users outside of the config.
   users.mutableUsers = false;
 
-  # Set a root password, consider using initialHashedPassword instead.
-  #
-  # To generate a hash to put in initialHashedPassword
-  # you can do this:
-  # $ nix-shell --run 'mkpasswd -m SHA-512 -s' -p mkpasswd
-  users.users.root.initialPassword = "ole";
+  # Disable root account
+  users.users.root.hashedPassword = "!";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ole = {
     isNormalUser = true;
-    initialPassword = "ole";
+    passwordFile = "/persist/passwords/ole";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      firefox
-      thunderbird
+      #firefox
+      #thunderbird
     ];
   };
 
@@ -127,12 +93,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    ncdu
-    tree
-    git
-    inputs.nps.defaultPackage.x86_64-linux
+    # discord
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -168,4 +129,3 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
-

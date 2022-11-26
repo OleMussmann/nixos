@@ -12,32 +12,32 @@
 
     packages = with pkgs; [
       # Terminal
-      btop              # Resource Manager
-      pfetch            # Minimal fetch
-      ranger            # File Manager
-      tldr              # Helper
+      #btop              # Resource Manager
+      #pfetch            # Minimal fetch
+      #ranger            # File Manager
+      #tldr              # Helper
 
-      # Video/Audio
-      feh               # Image Viewer
-      mpv               # Media Player
-      pavucontrol       # Audio control
-      plex-media-player # Media Player
-      vlc               # Media Player
-      stremio           # Media Streamer
+      ## Video/Audio
+      #feh               # Image Viewer
+      #mpv               # Media Player
+      #pavucontrol       # Audio control
+      #plex-media-player # Media Player
+      #vlc               # Media Player
+      #stremio           # Media Streamer
 
-      # Apps
-      appimage-run      # Runs AppImages on NixOS
-      firefox           # Browser
-      google-chrome     # Browser
-      remmina           # XRDP & VNC Client
+      ## Apps
+      #appimage-run      # Runs AppImages on NixOS
+      #firefox           # Browser
+      #google-chrome     # Browser
+      #remmina           # XRDP & VNC Client
 
-      # File Management
-      okular            # PDF viewer
-      gnome.file-roller # Archive Manager
-      pcmanfm           # File Manager
-      rsync             # Syncer $ rsync -r dir1/ dir2/
-      unzip             # Zip files
-      unrar             # Rar files
+      ## File Management
+      #okular            # PDF viewer
+      #gnome.file-roller # Archive Manager
+      #pcmanfm           # File Manager
+      #rsync             # Syncer $ rsync -r dir1/ dir2/
+      #unzip             # Zip files
+      #unrar             # Rar files
 
       # General configuration
       #git              # Repositories
@@ -114,36 +114,12 @@
       # Flatpak
       #obs-studio       # Recording/Live Streaming
     ];
-    file.".config/wall".source = ../modules/themes/wall;
-    file.".config/wall.mp4".source = ../modules/themes/wall.mp4;
-    pointerCursor = {                         # This will set cursor systemwide so applications can not choose their own
-      #name = "Dracula-cursors";
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      #package = pkgs.dracula-theme;
-      package = pkgs.catppuccin-cursors.mochaDark;
-      size = 16;
-    };
+    #file.".config/wall".source = ../modules/themes/wall;
+    #file.".config/wall.mp4".source = ../modules/themes/wall.mp4;
     stateVersion = "22.05";
   };
 
   programs = {
     home-manager.enable = true;
-  };
-
-  gtk = {                                     # Theming
-    enable = true;
-    theme = {
-      name = "Dracula";
-      #name = "Catppuccin-Dark";
-      package = pkgs.dracula-theme;
-      #package = pkgs.catppuccin-gtk;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    font = {
-      name = "JetBrains Mono Medium";         # or FiraCode Nerd Font Mono Medium
-    };                                        # Cursor is declared under home.pointerCursor
   };
 }
