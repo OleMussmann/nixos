@@ -22,19 +22,24 @@
 
   programs.zsh = {
     enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    history = {
+      expireDuplicatesFirst = true;
+      ignoreDups = true;
+      save = 100000;
+      size = 100000;
+    };
     shellAliases = {
       ll = "ls -l";
       trash = "gio trash";
       update = "cd /home/ole/.setup && nix flake update --commit-lock-file && cd -";
       upgrade = "sudo nixos-rebuild switch --flake /home/ole/.setup#nixos-vm";
     };
-    history = {
-      size = 100000;
-      path = "${config.xdg.dataHome}/zsh/history";
-    };
-    ohMyZsh = {
+    oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "colored-man-pages" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
+      plugins = [ "git" "colored-man-pages" "history" "command-not-found" ];
       theme = "robbyrussell";
     };
   };
