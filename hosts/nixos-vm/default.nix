@@ -82,6 +82,7 @@
     isNormalUser = true;
     passwordFile = "/persist/passwords/ole";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
     packages = with pkgs; [
       #firefox
       #thunderbird
