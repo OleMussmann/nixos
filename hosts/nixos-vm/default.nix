@@ -91,6 +91,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # add zsh to /etc/shells
+  # otherwise GDM does not show users with zsh
+  environment.shells = with pkgs; [ zsh ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
