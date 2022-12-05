@@ -34,8 +34,8 @@
     shellAliases = {
       ll = "ls -l";
       trash = "gio trash";
-      update = "cd /home/ole/.setup && nix flake update --commit-lock-file && cd -";
-      upgrade = "sudo nixos-rebuild switch --flake /home/ole/.setup#nixos-vm";
+      update = "cd /home/ole/.system && nix flake update --commit-lock-file && cd -";
+      upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#nixos-vm";
     };
     oh-my-zsh = {
       enable = true;

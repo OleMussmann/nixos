@@ -20,7 +20,7 @@
   outputs = { self, nixpkgs, home-manager, nps, ... }@inputs:
   let
     user = "ole";
-    location = "$HOME/.setup";
+    location = "$HOME/.system";
   in
   {
     nixosConfigurations = (                                 # NixOS configurations
