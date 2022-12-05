@@ -8,9 +8,9 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "ehci_pci" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "ehci_pci" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -19,13 +19,13 @@
       options = [ "defaults" "size=2G" "mode=755" ];
     };
 
-  fileSystems."/home" =
-    { device = "rpool/nixos/home";
+  fileSystems."/nix" =
+    { device = "rpool/nixos/nix";
       fsType = "zfs";
     };
 
-  fileSystems."/nix" =
-    { device = "rpool/nixos/nix";
+  fileSystems."/home" =
+    { device = "rpool/nixos/home";
       fsType = "zfs";
     };
 
@@ -34,24 +34,28 @@
       fsType = "zfs";
     };
 
-  #fileSystems."/nix/store" =
-  #  { device = "/nix/store";
-  #    fsType = "none";
-  #    options = [ "bind" ];
-  #  };
+  fileSystems."/var/lib" =
+    { device = "rpool/nixos/var/lib";
+      fsType = "zfs";
+    };
+
+  fileSystems."/var/log" =
+    { device = "rpool/nixos/var/log";
+      fsType = "zfs";
+    };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DD53-602D";
+    { device = "/dev/disk/by-uuid/A2C3-1B98";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/ca9caeff-f086-46d3-9af5-42a09efe5d0b"; }
+    [ { device = "/dev/disk/by-uuid/f5bf90e2-df7b-433e-9aef-0364692fde87"; }
     ];
 
   # ZFS settings
   boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "731b93fc";
+  networking.hostId = "8425e349";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.zfs.devNodes = "/dev/disk/by-path";
   services.zfs.autoScrub.enable = true;
@@ -64,5 +68,5 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.ens3.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
