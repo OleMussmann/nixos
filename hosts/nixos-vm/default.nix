@@ -6,8 +6,8 @@
 
 {
   imports =
-    [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
-    [(import ../../modules/games.nix)];          # Gaming
+    [(import ./hardware-configuration.nix)];# ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
+    #[(import ../../modules/games.nix)];          # Gaming
 
   # Use systemd boot (EFI only)
   boot.loader.systemd-boot.enable = true;
