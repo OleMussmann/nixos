@@ -45,12 +45,12 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A2C3-1B98";
+    { device = "/dev/disk/by-uuid/162D-5689";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/f5bf90e2-df7b-433e-9aef-0364692fde87"; }
+    [ { device = "/dev/disk/by-uuid/607e1733-5e49-436c-884b-c5ccf8d0664a"; }
     ];
 
   # ZFS settings
