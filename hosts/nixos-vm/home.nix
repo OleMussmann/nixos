@@ -43,4 +43,9 @@
       theme = "robbyrussell";
     };
   };
+
+  programs.git = {
+    userName  = "ole";
+    userEmail = "gitlab+account@ole.mn";
+  };
 }
