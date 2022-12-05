@@ -45,6 +45,7 @@
   };
 
   programs.git = {
+    enable = true;
     userName  = "ole";
     userEmail = "gitlab+account@ole.mn";
   };

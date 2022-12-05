@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [           # Default packages install system-wide
-      git
       htop
       inputs.nps.defaultPackage.x86_64-linux
       killall
