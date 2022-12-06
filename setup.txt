@@ -85,6 +85,8 @@ nixos-generate-config --show-hardware-config > hardware.txt
 mkdir /mnt/persist/passwords
 [move user password files to /mnt/persist/passwords]
 
+mkdir -p /mnt/persist/etc/ssh
+
 sudo nixos-install --root /mnt --flake .#nixos-vm
 
 [reboot]
