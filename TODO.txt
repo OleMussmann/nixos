@@ -1,5 +1,2 @@
 - sudo first run
 - deezer
-- screen timeout
-- gnome setup
-  - favorite terminal
