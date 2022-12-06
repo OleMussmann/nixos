@@ -1,2 +1,4 @@
 - deezer
+- install bat
+- configure starship
 - ZFS snapshots
