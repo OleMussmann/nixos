@@ -50,10 +50,10 @@
       event-sounds = "false";
     };
 
+    # Prevent screen timeout for VM
     "org/gnome/desktop/session" = {
       idle-delay = lib.hm.gvariant.mkUint32 0;
     };
-
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
     };
