@@ -17,6 +17,10 @@
       handbrake        # Encoder
       inkscape         # Vector Graphical Editor
       libreoffice      # Office Packages
+
+      # GNOME extensions
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.gsconnect
     ];
   };
 

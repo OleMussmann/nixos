@@ -99,8 +99,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # discord
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.gsconnect
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
