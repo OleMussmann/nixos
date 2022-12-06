@@ -1,0 +1,98 @@
+## create vm
+
+- create vm in virt manager
+- use UEFI mode
+- boot live medium
+- take over with Gnome Boxes (does copy&paste, etc.)
+
+## gparted
+
+- (create GPT partition table)
+- boot
+  - 500mb
+  - partition name "boot"
+  - file system FAT32
+  - label "boot"
+- system
+  - rest-swap
+  - partition name "system"
+  - file system "unformatted"
+  - label "rpool"
+- swap
+  - 2*RAM+x
+  - partition name "swap"
+  - file system "linux-swap"
+
+- apply
+- set boot flag: boot,esp
+
+## ZFS
+
+sudo -i
+
+zpool create \
+    -o ashift=12 \
+    -o autotrim=on \
+    -R /mnt \
+    -O acltype=posixacl \
+    -O canmount=off \
+    -O compression=zstd \
+    -O dnodesize=auto \
+    -O normalization=formD \
+    -O relatime=on \
+    -O xattr=sa \
+    -O mountpoint=/ \
+    rpool \
+    /dev/disk/by-id/...-part2  # double-check the partition number!
+
+zfs create \
+ -o canmount=off \
+ -o mountpoint=none \
+ -o encryption=on \
+ -o keylocation=prompt \
+ -o keyformat=passphrase \
+ rpool/nixos
+
+[enter disk encryption password twice]
+
+zfs create -o canmount=on -o mountpoint=/nix rpool/nixos/nix
+zfs create -o canmount=on -o mountpoint=/home rpool/nixos/home
+zfs create -o canmount=on -o mountpoint=/persist rpool/nixos/persist
+zfs create -o canmount=off -o mountpoint=/var  rpool/nixos/var
+zfs create -o canmount=on  rpool/nixos/var/lib
+zfs create -o canmount=on  rpool/nixos/var/log
+
+## mount everything
+
+mkdir /mnt/boot
+mount /dev/disk/by-id/...-part1 /mnt/boot  # double-check the partition number!
+swapon /dev/disk/by-id/...-part3  # double-check the partition number!
+
+## get config
+
+cd /mnt/persist
+git clone https://gitlab.com/OleMussmann/nixos .system
+cd .system
+nixos-generate-config --show-hardware-config > hardware.txt
+
+[merge configs]
+[replace 'hostid' (command 'hostid')]
+
+## users
+
+[create user passwords with script]
+
+mkdir /mnt/persist/passwords
+[move user password files to /mnt/persist/passwords]
+
+sudo nixos-install --root /mnt --flake .#nixos-vm
+
+[reboot]
+
+## transfer config
+
+sudo mv /persist/.system ~/.system
+sudo chown -R ole.users .system
+
+## prepare new system
+nix-index  # command-not-found replacement
