@@ -17,6 +17,7 @@
       handbrake        # Encoder
       inkscape         # Vector Graphical Editor
       libreoffice      # Office Packages
+      dconf2nix        # turn GNOME dconf settings to nix strings
 
       # GNOME extensions
       gnomeExtensions.dash-to-dock
@@ -25,6 +26,7 @@
   };
 
   dconf.settings = {
+
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
@@ -35,12 +37,15 @@
         "dash-to-dock@micxgx.gmail.com"
       ];
     };
+
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "LEFT";
     };
+
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
+
     "org/gnome/desktop/sounds" = {
       event-sounds = "false";
     };
