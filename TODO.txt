@@ -2,3 +2,4 @@
 - deezer
 - screen timeout
 - gnome setup
+  - favorite terminal
