@@ -121,5 +121,7 @@
 
   programs = {
     home-manager.enable = true;
+    command-not-found.enable = false;  # broken for flakes-only builds without channels
+    nix-index.enable = true;           # use nix-index instead of command-not-found
   };
 }
