@@ -15,20 +15,20 @@
   nix = {                                   # Nix Package Manager settings
     settings ={
       auto-optimise-store = true;           # Optimise syslinks
+      keep-outputs        = true;           # Keep packages needed for building other packages
+      fallback            = true;           # Build from source if binary substitute fails
+      log-lines           = 25;             # Keep more log lines if things go wrong
     };
     gc = {                                  # Automatic garbage collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 14d";
     };
-    #package = pkgs.nixVersions.unstable;    # Enable nixFlakes on system
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
-      keep-outputs          = true
-      keep-derivations      = true
     '';
   };
-  nixpkgs.config.allowUnfree = true;        # Allow proprietary software.
+  nixpkgs.config.allowUnfree = true;        # Allow proprietary software
   system.stateVersion = "22.05";
 }
