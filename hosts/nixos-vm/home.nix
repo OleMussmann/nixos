@@ -88,6 +88,11 @@
     };
   };
 
+  programs.fzf ={
+    enable = true;
+    tmux.enableShellIntegration = true;
+  };
+
   programs.starship = {
     enable = true;
     settings = {
