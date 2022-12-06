@@ -95,6 +95,9 @@
   # otherwise GDM does not show users with zsh
   environment.shells = with pkgs; [ zsh ];
 
+  # enable completion for system packages like systemd
+  environment.pathsToLink = [ "/share/zsh" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

@@ -61,14 +61,19 @@
 
   programs.zsh = {
     enable = true;
+    defaultKeymap = "viins";
     enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
+      extended = true;     # save timestamps
       save = 100000;
       size = 100000;
+    };
+    historySubstringSearch = {
+      enable = true;
     };
     shellAliases = {
       ll = "ls -l";
@@ -78,9 +83,13 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "colored-man-pages" "history" "command-not-found" ];
-      theme = "robbyrussell";
+      plugins = [ "git" "colored-man-pages" "history" ];
+      theme = "robbyrussel";
     };
+  };
+
+  programs.starship = {
+    enable = true;
   };
 
   programs.git = {
