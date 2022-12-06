@@ -84,7 +84,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "colored-man-pages" "history" ];
-      theme = "robbyrussel";
+      theme = "robbyrussell";
     };
   };
 
