@@ -1,0 +1,4 @@
+- sudo first run
+- deezer
+- screen timeout
+- gnome setup
