@@ -86,6 +86,7 @@ mkdir /mnt/persist/passwords
 [move user password files to /mnt/persist/passwords]
 
 mkdir -p /mnt/persist/etc/ssh
+mkdir -p /mnt/persist/var/db/sudo/lectured
 
 sudo nixos-install --root /mnt --flake .#nixos-vm
 
