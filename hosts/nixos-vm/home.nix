@@ -39,6 +39,10 @@
       ];
     };
 
+    "org/gnome/Console" = {
+      scrollback-lines = "int64 -1";
+    };
+
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "LEFT";
     };
