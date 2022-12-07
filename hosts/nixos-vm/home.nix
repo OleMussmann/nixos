@@ -44,6 +44,12 @@
 
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+      document-font-name = "UbuntuMono Nerd Font 12";
+      font-name = "UbuntuMono Nerd Font 12";
+      monospace-font-name = "UbuntuMono Nerd Font Mono 13";
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      titlebar-font = "UbuntuMono Nerd Font Bold 12";
     };
 
     "org/gnome/desktop/sounds" = {
