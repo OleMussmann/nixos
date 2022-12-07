@@ -90,6 +90,19 @@
 
   programs.fzf ={
     enable = true;
+    colors = {
+      "fg" = "#dedede";
+      "bg" = "#121212";
+      "hl" = "#666666";
+      "fg+" = "#eeeeee";
+      "bg+" = "#282828";
+      "hl+" = "#cf73e6";
+      "info" = "#cf73e6";
+      "prompt" = "#ff0000";
+      "spinner" = "#cf73e6";
+      "pointer" = "#cf73e6";
+      "marker" = "#f0d50c";
+    };
     tmux.enableShellIntegration = true;
   };
 
