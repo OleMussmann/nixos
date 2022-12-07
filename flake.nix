@@ -4,12 +4,12 @@
 
   # Input config, or package repos
   inputs = {
+    # Nixpkgs, NixOS's official repo
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+
     # Home Manager
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Nixpkgs, NixOS's official repo
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
 
     # Nix Package Search
     nps.url = "github:OleMussmann/Nix-Package-Search";
