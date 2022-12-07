@@ -6,12 +6,22 @@
   #  (import ../modules/programs) ++
   #  (import ../modules/services);
 
+  fonts.fontconfig.enable = true;
+
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
     stateVersion = "22.05";
 
     packages = with pkgs; [
+      (nerdfonts.override {
+        fonts = [
+          "Ubuntu"
+          "UbuntuMono"
+          "DroidSansMono"
+          "RobotoMono"
+        ];
+      })
       # Terminal
       #btop              # Resource Manager
       #pfetch            # Minimal fetch
