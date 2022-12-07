@@ -2,5 +2,4 @@
 - configure nvim
 - configure starship
 - fzf colors
-- gnome tweaks
 - ZFS snapshots
