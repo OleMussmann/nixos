@@ -2,15 +2,16 @@
 
 {
   environment.systemPackages = with pkgs; [           # Default packages install system-wide
-      htop
-      inputs.nps.defaultPackage.x86_64-linux
-      killall
-      ncdu
-      neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      tmux
-      tree
-      wget
-    ];
+    bat
+    htop
+    inputs.nps.defaultPackage.x86_64-linux
+    killall
+    ncdu
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    tmux
+    tree
+    wget
+  ];
 
   # machine-id is used by systemd for the journal, if you don't
   # persist this file you won't be able to easily use journalctl to
