@@ -11,6 +11,7 @@
     neovim
     tmux
     tree
+    wl-clipboard
     wget
   ];
 
