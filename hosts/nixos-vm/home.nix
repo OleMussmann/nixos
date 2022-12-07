@@ -42,7 +42,11 @@
       dock-position = "LEFT";
     };
 
+    "org/gnome/desktop/calendar" = {
+      show-weekdate = true;
+    };
     "org/gnome/desktop/interface" = {
+      clock-show-weekday = true;
       color-scheme = "prefer-dark";
       document-font-name = "Ubuntu Nerd Font 11";
       font-name = "Ubuntu Nerd Font 11";
