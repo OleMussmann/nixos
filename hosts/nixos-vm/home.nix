@@ -50,6 +50,8 @@
     };
     "org/gnome/desktop/wm/preferences" = {
       titlebar-font = "Ubuntu Nerd Font Bold 11";
+      action-right-click-titlebar = "menu";
+      action-middle-click-titlebar = "minimize";
     };
 
     "org/gnome/desktop/sounds" = {
