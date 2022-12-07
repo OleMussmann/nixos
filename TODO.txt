@@ -1,5 +1,4 @@
 - deezer
-- install bat
 - configure nvim
 - configure starship
 - fzf colors
