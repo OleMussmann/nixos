@@ -91,11 +91,9 @@ in {
     enable = true;
     defaultKeymap = "viins";
     enableAutosuggestions = true;
-    enableCompletion = true;
     enableSyntaxHighlighting = true;
     history = {
       expireDuplicatesFirst = true;
-      ignoreDups = true;
       extended = true;     # save timestamps
       save = 100000;
       size = 100000;
@@ -109,9 +107,25 @@ in {
       update = "cd /home/ole/.system && nix flake update --commit-lock-file";
       upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#nixos-vm";
     };
+
+    # zsh options
+    initExtra = ''
+      LIST_TYPES="true"
+    '';
+
+    # oh-my-zsh options
+    localVariables = {
+      ENABLE_CORRECTION = "true";
+      COMPLETION_WAITING_DOTS = "true";
+    };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "colored-man-pages" "history" ];
+      plugins = [
+	"colored-man-pages"
+	"history"            # aliases h, hs (search), hsi (search case-insensitive)
+	"docker"             # completion and aliases
+	"docker-compose"     # completion and aliases
+      ];
       theme = "robbyrussell";
     };
   };
