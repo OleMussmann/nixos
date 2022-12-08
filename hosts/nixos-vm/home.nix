@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 
-{
+let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: rec { patches = [ ../../patches/kgx/0001-apply-dual-snazzy-color-scheme.patch ]; } );
+in {
   #imports =
   #  [
   #    #../../modules/desktop/bspwm/home.nix    # Window Manager
@@ -22,6 +23,7 @@
       # GNOME extensions
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
+      kgx_patched
     ];
   };
 
