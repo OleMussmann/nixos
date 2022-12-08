@@ -7,6 +7,7 @@
     htop
     inputs.nps.defaultPackage.x86_64-linux
     killall
+    neofetch
     ncdu
     neovim
     tmux
