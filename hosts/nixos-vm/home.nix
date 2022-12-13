@@ -37,7 +37,7 @@ in {
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
-	"drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
       ];
     };
 
@@ -121,10 +121,10 @@ in {
     oh-my-zsh = {
       enable = true;
       plugins = [
-	"colored-man-pages"
-	"history"            # aliases h, hs (search), hsi (search case-insensitive)
-	"docker"             # completion and aliases
-	"docker-compose"     # completion and aliases
+        "colored-man-pages"
+        "history"            # aliases h, hs (search), hsi (search case-insensitive)
+        "docker"             # completion and aliases
+        "docker-compose"     # completion and aliases
       ];
       theme = "robbyrussell";
     };
