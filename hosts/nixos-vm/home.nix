@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: rec { patches = [ ../../patches/kgx/0001-apply-dual-snazzy-color-scheme.patch ]; } );
+let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: rec { patches = [ ../../patches/kgx/atelierlakeside.alpha_0.97.hybrid.alpha_0.97.patch ]; } );
 in {
   #imports =
   #  [
