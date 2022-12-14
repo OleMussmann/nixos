@@ -5,15 +5,18 @@
     bat
     gnome3.gnome-tweaks
     htop
-    inputs.nps.defaultPackage.x86_64-linux
     killall
     neofetch
     ncdu
     neovim
+    #nps
     tmux
     tree
     wl-clipboard
     wget
+
+    # external packages defined in "inputs"
+    inputs.nps #.defaultPackage.x86_64-linux
   ];
 
   # machine-id is used by systemd for the journal, if you don't

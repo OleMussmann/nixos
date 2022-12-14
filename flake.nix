@@ -12,12 +12,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix Package Search
-    nps.url = "github:OleMussmann/Nix-Package-Search";
+    #nps.url = "github:OleMussmann/Nix-Package-Search?ref=ripgrep";
+    nps.url = "path:/home/ole/bin/Nix-Package-Search";
     nps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Output config, or config for NixOS system
-  outputs = { self, nixpkgs, home-manager, nps, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
     user = "ole";
     location = "$HOME/.system";
