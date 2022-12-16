@@ -1,8 +1,7 @@
-{ inputs, nixpkgs, home-manager, user, location, ... }:
+{ inputs, nixpkgs, home-manager, user, location, overlays-third-party, ... }:
 
 let
   pkgs = import nixpkgs {
-    #inherit system;
     config.allowUnfree = true;                              # Allow proprietary software
   };
 in
@@ -11,6 +10,11 @@ in
     system = "x86_64-linux";                                # System architecture
     specialArgs = { inherit inputs user location; };        # Pass flake variable
     modules = [                                             # Modules that are used.
+      ({ config, pkgs, ... }: {
+        nixpkgs.overlays = [
+	  overlays-third-party
+        ];
+      })
       ./nixos-vm
       ./shared.nix
 
