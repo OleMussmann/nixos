@@ -1,10 +1,5 @@
 { inputs, nixpkgs, home-manager, user, overlays-third-party, ... }:
 
-let
-  pkgs = import nixpkgs {
-    config.allowUnfree = true;                              # Allow proprietary software
-  };
-in
 {
   nixos-vm = nixpkgs.lib.nixosSystem {                      # VM profile
     system = "x86_64-linux";                                # System architecture
