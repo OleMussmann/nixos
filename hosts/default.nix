@@ -3,7 +3,7 @@
 {
   nixos-vm = nixpkgs.lib.nixosSystem {                      # VM profile
     system = "x86_64-linux";                                # System architecture
-    specialArgs = { inherit inputs user; };        # Pass flake variable
+    specialArgs = { inherit inputs user; };                 # Pass flake variable
     modules = [                                             # Modules that are used.
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [
