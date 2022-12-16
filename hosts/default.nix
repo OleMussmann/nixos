@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, home-manager, user, location, overlays-third-party, ... }:
+{ inputs, nixpkgs, home-manager, user, overlays-third-party, ... }:
 
 let
   pkgs = import nixpkgs {
@@ -8,7 +8,7 @@ in
 {
   nixos-vm = nixpkgs.lib.nixosSystem {                      # VM profile
     system = "x86_64-linux";                                # System architecture
-    specialArgs = { inherit inputs user location; };        # Pass flake variable
+    specialArgs = { inherit inputs user; };        # Pass flake variable
     modules = [                                             # Modules that are used.
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [

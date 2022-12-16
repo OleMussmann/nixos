@@ -21,7 +21,6 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
     user = "ole";
-    location = "$HOME/.system";
     overlays-third-party = final: prev: {
       nps = inputs.nps.defaultPackage.${prev.system};
     };
@@ -30,7 +29,7 @@
     nixosConfigurations = (                                 # NixOS configurations
       import ./hosts {                                      # Imports ./hosts/default.nix
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager user location overlays-third-party;  # Also inherit home-manager so it does not need to be defined here.
+        inherit inputs nixpkgs home-manager user overlays-third-party;  # Also inherit home-manager so it does not need to be defined here.
         }
       );
   };

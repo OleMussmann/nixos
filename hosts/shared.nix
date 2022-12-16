@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, user, location, ... }:
+{ config, lib, pkgs, inputs, user, ... }:
 
 {
   environment.systemPackages = with pkgs; [           # Default packages install system-wide
