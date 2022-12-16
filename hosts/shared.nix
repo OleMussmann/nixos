@@ -9,11 +9,13 @@
     neofetch
     ncdu
     neovim
-    nps
     tmux
     tree
     wl-clipboard
     wget
+
+    # third-party-packages
+    third-party.nps
   ];
 
   # machine-id is used by systemd for the journal, if you don't

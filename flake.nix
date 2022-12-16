@@ -22,7 +22,11 @@
   let
     user = "ole";
     overlays-third-party = final: prev: {
-      nps = inputs.nps.defaultPackage.${prev.system};
+      # Let's give third-party packages their own 'third-party'
+      # attribute not shadow possible existing packages.
+      third-party = {
+        nps = inputs.nps.defaultPackage.${prev.system};
+      };
     };
   in
   {
