@@ -12,8 +12,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix Package Search
-    #nps.url = "github:OleMussmann/Nix-Package-Search?ref=ripgrep";
-    nps.url = "path:/home/ole/bin/Nix-Package-Search";
+    nps.url = "github:OleMussmann/Nix-Package-Search";
     nps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
