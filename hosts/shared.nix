@@ -53,5 +53,4 @@
     '';
   };
   nixpkgs.config.allowUnfree = true;        # Allow proprietary software
-  system.stateVersion = "22.05";
 }
