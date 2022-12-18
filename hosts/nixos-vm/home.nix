@@ -213,7 +213,7 @@ in {
 
   programs.git = {
     enable = true;
-    userName  = "ole";
+    userName  = "Ole Mussmann";
     userEmail = "gitlab+account@ole.mn";
   };
 
