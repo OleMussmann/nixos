@@ -61,8 +61,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1671521488,
-        "narHash": "sha256-2kOCqEsiaqtVx5oRJ9KF5CQLVvgxQZqBdBTJJD8dNKg=",
+        "lastModified": 1671521551,
+        "narHash": "sha256-p8sYUpvZV5kV2jmYXNkDV/vjEFntoLcgg/e1eTl6gJ8=",
         "path": "/home/ole/bin/Nix-Package-Search",
         "type": "path"
       },
