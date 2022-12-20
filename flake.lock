@@ -61,14 +61,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1671522660,
-        "narHash": "sha256-IegmmCpKZmB7VjQVWURlP0sFKQvX8mY7QMUoHozPGQ0=",
-        "path": "/home/ole/bin/Nix-Package-Search",
-        "type": "path"
+        "lastModified": 1671522714,
+        "narHash": "sha256-YjuZ0OLrNPl6zZVMMbyMEjFquucDUUVhz9xPZ1U6ZIg=",
+        "owner": "OleMussmann",
+        "repo": "Nix-Package-Search",
+        "rev": "9729850d26fc7d1954c390826658a3639eeaa5fc",
+        "type": "github"
       },
       "original": {
-        "path": "/home/ole/bin/Nix-Package-Search",
-        "type": "path"
+        "owner": "OleMussmann",
+        "repo": "Nix-Package-Search",
+        "type": "github"
       }
     },
     "root": {
