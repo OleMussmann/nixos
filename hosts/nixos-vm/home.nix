@@ -1,6 +1,14 @@
 { pkgs, lib, ... }:
 
 let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: { patches = [ ../../patches/kgx/atelierlakeside.alpha_0.97.hybrid.alpha_0.97.patch ]; } );
+#let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: {
+#  patches = [ 
+#    (pkgs.fetchpatch {
+#      url = "https://raw.githubusercontent.com/OleMussmann/kgx-themes/v0.0.1/patches/dark/dracula.alpha_0.95.patch";
+#      sha256 = "sha256-853zE8RJMlSVIQQmGKjp3Hvg5/aQtFHk6g5jz76knbA=";
+#    })
+#  ];
+#});
 in {
   #imports =
   #  [
@@ -23,6 +31,8 @@ in {
       # GNOME extensions
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
+
+      # Patched packages
       kgx_patched
     ];
     sessionVariables = {
