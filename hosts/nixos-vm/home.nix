@@ -117,7 +117,7 @@ in {
     shellAliases = {
       ll = "ls -l";
       trash = "gio trash";
-      update = "cd /home/ole/.system && nix flake update --commit-lock-file";
+      update = "(cd /home/ole/.system && nix flake update --commit-lock-file)";
       upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#nixos-vm";
     };
 
