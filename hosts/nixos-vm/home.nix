@@ -31,6 +31,7 @@ in {
       # GNOME extensions
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
+      gnomeExtensions.pop-shell
 
       # Patched packages
       kgx_patched
