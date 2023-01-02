@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [           # Default packages install system-wide
     bat
-    gnome3.gnome-tweaks
     htop
     killall
     neofetch

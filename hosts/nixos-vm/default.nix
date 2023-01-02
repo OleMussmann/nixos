@@ -84,8 +84,7 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
-      #firefox
-      #thunderbird
+      gnome3.gnome-tweaks
     ];
   };
 
