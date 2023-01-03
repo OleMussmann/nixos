@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [           # Default packages install system-wide
     bat
+    btop
     htop
     killall
     neofetch
