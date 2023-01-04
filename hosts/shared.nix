@@ -2,17 +2,20 @@
 
 {
   environment.systemPackages = with pkgs; [           # Default packages install system-wide
-    bat           # `cat` with syntax highlighting
-    btop          # system monitor
-    htop          # system monitor
-    killall       # kill process by name
-    neofetch      # display system stats
-    ncdu          # analyze disk usage
-    neovim        # editor
-    tmux          # terminal multiplexer
-    tree          # print directory structure
-    wl-clipboard  # Wayland clipbord utilities
-    wget          # network downloader
+    bat              # `cat` with syntax highlighting
+    btop             # system monitor
+    htop             # system monitor
+    killall          # kill process by name
+    neofetch         # display system stats
+    ncdu             # analyze disk usage
+    neovim           # editor
+    tldr             # Helper
+    tmux             # terminal multiplexer
+    tree             # print directory structure
+    unzip            # Zip files
+    unrar            # Rar files
+    wl-clipboard     # Wayland clipbord utilities
+    wget             # network downloader
 
     # third-party-packages
     third-party.nps  # nix package search

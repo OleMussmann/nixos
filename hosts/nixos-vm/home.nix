@@ -36,10 +36,7 @@ in {
       handbrake        # Encoder
       inkscape         # Vector Graphical Editor
       libreoffice      # Office Packages
-      tldr             # Helper
       transmission     # Torrent client
-      unzip            # Zip files
-      unrar            # Rar files
       xorg.xkill       # Kill Applications
 
       # GNOME extensions
