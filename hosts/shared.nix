@@ -1,7 +1,8 @@
 { config, lib, pkgs, inputs, user, ... }:
 
 {
-  environment.systemPackages = with pkgs; [           # Default packages install system-wide
+  # Default packages, install system-wide
+  environment.systemPackages = with pkgs; [
     bat              # `cat` with syntax highlighting
     btop             # system monitor
     htop             # system monitor
@@ -36,11 +37,14 @@
     "ssh/ssh_host_ed25519_key".source = "/persist/etc/ssh/ssh_host_ed25519_key";
     "ssh/ssh_host_ed25519_key.pub".source = "/persist/etc/ssh/ssh_host_ed25519_key.pub";
   };
+
+  # persist if user was lectured about `sudo` responsibilities
   systemd.tmpfiles.rules = [
     "L /var/db/sudo/lectured - - - - /persist/var/db/sudo/lectured"
   ];
 
-  nix = {                                   # Nix Package Manager settings
+  # Nix Package Manager settings
+  nix = {
     settings ={
       auto-optimise-store = true;           # Optimise syslinks
       keep-outputs        = true;           # Keep packages needed for building other packages
