@@ -20,7 +20,7 @@
   };
 
   # Output config, or config for NixOS system
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs:
   let
     user = "ole";
     overlays-third-party = final: prev: {
