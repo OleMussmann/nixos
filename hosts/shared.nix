@@ -2,20 +2,20 @@
 
 {
   environment.systemPackages = with pkgs; [           # Default packages install system-wide
-    bat
-    btop
-    htop
-    killall
-    neofetch
-    ncdu
-    neovim
-    tmux
-    tree
-    wl-clipboard
-    wget
+    bat           # `cat` with syntax highlighting
+    btop          # system monitor
+    htop          # system monitor
+    killall       # kill process by name
+    neofetch      # display system stats
+    ncdu          # analyze disk usage
+    neovim        # editor
+    tmux          # terminal multiplexer
+    tree          # print directory structure
+    wl-clipboard  # Wayland clipbord utilities
+    wget          # network downloader
 
     # third-party-packages
-    third-party.nps
+    third-party.nps  # nix package search
   ];
 
   # machine-id is used by systemd for the journal, if you don't
