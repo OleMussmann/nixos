@@ -14,6 +14,9 @@
     # Nix Package Search
     nps.url = "github:OleMussmann/Nix-Package-Search";
     nps.inputs.nixpkgs.follows = "nixpkgs";
+    
+    # NixOS Hardware
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"
   };
 
   # Output config, or config for NixOS system
@@ -32,7 +35,7 @@
     nixosConfigurations = (                                 # NixOS configurations
       import ./hosts {                                      # Imports ./hosts/default.nix
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager user overlays-third-party;  # Also inherit home-manager so it does not need to be defined here.
+        inherit inputs nixpkgs home-manager user nixos-hardware overlays-third-party;  # Also inherit home-manager so it does not need to be defined here.
         }
       );
   };
