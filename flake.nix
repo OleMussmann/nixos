@@ -16,7 +16,7 @@
     nps.inputs.nixpkgs.follows = "nixpkgs";
     
     # NixOS Hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master"
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   # Output config, or config for NixOS system
