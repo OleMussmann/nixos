@@ -47,6 +47,7 @@
       }
     ];
   };
+
   #other_system = nixpkgs.lib.nixosSystem {                 # more system profiles
   #  ...
   #};
