@@ -11,16 +11,19 @@
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Nix Package Search
-    nps.url = "github:OleMussmann/Nix-Package-Search";
-    nps.inputs.nixpkgs.follows = "nixpkgs";
+    # Impermanence
+    impermanence.url = "github:nix-community/impermanence";
     
     # NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # Nix Package Search
+    nps.url = "github:OleMussmann/Nix-Package-Search/development";
+    nps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Output config, or config for NixOS system
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
   let
     user = "ole";
     overlays-third-party = final: prev: {

@@ -1,6 +1,10 @@
 { config, lib, pkgs, inputs, user, ... }:
 
 {
+  imports = [
+    inputs.impermanence.nixosModules.impermanence
+  ];
+
   # Default packages, install system-wide
   environment.systemPackages = with pkgs; [
     bat              # `cat` with syntax highlighting
@@ -30,16 +34,26 @@
   # host keys across reboots. For this to work you will need to
   # create the directory yourself:
   # $ mkdir /persist/etc/ssh
-  environment.etc = {
-    "machine-id".source = "/persist/etc/machine-id";
-    "ssh/ssh_host_rsa_key".source = "/persist/etc/ssh/ssh_host_rsa_key";
-    "ssh/ssh_host_rsa_key.pub".source = "/persist/etc/ssh/ssh_host_rsa_key.pub";
-    "ssh/ssh_host_ed25519_key".source = "/persist/etc/ssh/ssh_host_ed25519_key";
-    "ssh/ssh_host_ed25519_key.pub".source = "/persist/etc/ssh/ssh_host_ed25519_key.pub";
+  environment = {
+    etc = {
+      "machine-id".source = "/persist/etc/machine-id";
+      "ssh/ssh_host_rsa_key".source = "/persist/etc/ssh/ssh_host_rsa_key";
+      "ssh/ssh_host_rsa_key.pub".source = "/persist/etc/ssh/ssh_host_rsa_key.pub";
+      "ssh/ssh_host_ed25519_key".source = "/persist/etc/ssh/ssh_host_ed25519_key";
+      "ssh/ssh_host_ed25519_key.pub".source = "/persist/etc/ssh/ssh_host_ed25519_key.pub";
+    };
+    persistence."/persist" = {
+      directories = [
+        "/var/lib/bluetooth"
+        "/etc/NetworkManager/system-connections"
+        "/etc/wireguard"
+      ];
+    };
   };
 
-  # persist if user was lectured about `sudo` responsibilities
+  # persist bluetooth connections
   systemd.tmpfiles.rules = [
+    # persist if user was lectured about `sudo` responsibilities
     "L /var/db/sudo/lectured - - - - /persist/var/db/sudo/lectured"
   ];
 

@@ -1,6 +1,5 @@
+- fix 'user' inconsistencies
 - deezer
 - configure nvim
-- configure starship
-- fzf colors
 - ZFS snapshots
 - wipeclean https://github.com/JeanJouliaCode/wipeClean

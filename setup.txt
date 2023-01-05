@@ -85,8 +85,11 @@ nixos-generate-config --show-hardware-config > hardware.txt
 mkdir /mnt/persist/passwords
 [move user password files to /mnt/persist/passwords]
 
+mkdir -p /mnt/persist/etc/NetworkManager/system-connections
 mkdir -p /mnt/persist/etc/ssh
+mkdir -p /mnt/persist/etc/wireguard
 mkdir -p /mnt/persist/var/db/sudo/lectured
+mkdir -p /mnt/persist/var/lib/bluetooth
 
 sudo nixos-install --root /mnt --flake .#nixos-vm
 

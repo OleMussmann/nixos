@@ -16,14 +16,16 @@ in {
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
       discord          # Comms
-      ffmpeg           # Video Support
+      ffmpeg           # Video support
       firefox          # Browser
-      gimp             # Graphical Editor
+      gimp             # Graphical editor
       handbrake        # Encoder
-      inkscape         # Vector Graphical Editor
-      libreoffice      # Office Packages
+      inkscape         # Vector graphical editor
+      keepassxc        # Password manager
+      libreoffice      # Office packages
+      nextcloud-client # File sync
       transmission     # Torrent client
-      xorg.xkill       # Kill Applications
+      xorg.xkill       # Kill applications
 
       # GNOME extensions
       gnomeExtensions.dash-to-dock
@@ -43,6 +45,7 @@ in {
         ];
       })
     ];
+
     sessionVariables = {
       FZF_DEFAULT_OPTS = "--color 16";  # use terminal color palette
     };
