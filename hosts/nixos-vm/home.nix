@@ -30,19 +30,22 @@ in {
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
       discord          # Comms
-      ffmpeg           # Video Support
+      ffmpeg           # Video support
       firefox          # Browser
-      gimp             # Graphical Editor
+      gimp             # Graphical editor
       handbrake        # Encoder
-      inkscape         # Vector Graphical Editor
-      libreoffice      # Office Packages
+      inkscape         # Vector graphical editor
+      libreoffice      # Office packages
       transmission     # Torrent client
-      xorg.xkill       # Kill Applications
+      xorg.xkill       # Kill applications
 
       # GNOME extensions
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
+
+      # Extra GNOME packages
+      gnome3.gnome-tweaks
 
       # Patched packages
       kgx_patched
@@ -57,13 +60,14 @@ in {
         ];
       })
     ];
+
     sessionVariables = {
       FZF_DEFAULT_OPTS = "--color 16";  # use terminal color palette
     };
   };
 
+  # Configure GNOME
   dconf.settings = {
-
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
@@ -77,7 +81,8 @@ in {
     };
 
     "org/gnome/Console" = {
-      scrollback-lines = "int64 -1";
+      
+      scrollback-lines = "int64 -1";  # Infinite scrollback
       theme = "auto";
     };
 
@@ -101,6 +106,7 @@ in {
       action-middle-click-titlebar = "minimize";
     };
 
+    # Silence!
     "org/gnome/desktop/sounds" = {
       event-sounds = "false";
     };
@@ -113,6 +119,7 @@ in {
       sleep-inactive-ac-type = "nothing";
     };
 
+    # Console keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
     };
@@ -150,6 +157,7 @@ in {
       };
 
       # zsh options
+      # show file type with trailing identifying mark
       initExtra = ''
         LIST_TYPES="true"
       '';
@@ -167,7 +175,6 @@ in {
           "docker"             # completion and aliases
           "docker-compose"     # completion and aliases
         ];
-        theme = "robbyrussell";
       };
     };
 

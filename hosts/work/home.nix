@@ -32,6 +32,9 @@ in {
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
 
+      # Extra GNOME packages
+      gnome3.gnome-tweaks
+
       # Patched packages
       kgx_patched
 
@@ -65,9 +68,10 @@ in {
       ];
     };
 
-    # Infinite scrollback
     "org/gnome/Console" = {
-      scrollback-lines = "int64 -1";
+      
+      scrollback-lines = "int64 -1";  # Infinite scrollback
+      theme = "auto";
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
