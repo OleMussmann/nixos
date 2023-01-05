@@ -11,15 +11,17 @@
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Nix Package Search
+    #nps.url = "github:OleMussmann/Nix-Package-Search";
+    nps.url = "path:/home/ole/bin/Nix-Package-Search";
+    nps.inputs.nixpkgs.follows = "nixpkgs";
+
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
+
     
     # NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    # Nix Package Search
-    nps.url = "github:OleMussmann/Nix-Package-Search/development";
-    nps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Output config, or config for NixOS system
