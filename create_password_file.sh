@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
 echo -n "Enter username: "
-read USER
+read -r USER
 if [ -f "$USER" ]; then
 	echo "User file $USER exists. Please remove it first. Exiting."
 	exit 1
 fi
 
 echo -n "Enter password for user '$USER': "
-read -s PASS
+read -r -s PASS
 echo
 echo -n "Repeat password: "
-read -s PASS_AGAIN
+read -r -s PASS_AGAIN
 
 if [ ! "$PASS" == "$PASS_AGAIN" ]; then
 	echo "Passwords not the same. Exiting."
@@ -21,7 +21,7 @@ fi
 HASH="$(mkpasswd -m sha-512 $PASS)"
 
 # Write password to user file and make read-only.
-echo "$HASH" > "$USER"
+echo -E "$HASH" > "$USER"
 chmod 400 "$USER"
 
 echo
