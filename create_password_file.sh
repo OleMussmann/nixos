@@ -27,7 +27,7 @@ chmod 400 "$USER"
 echo
 echo
 echo "Changing owner of file '$USER' to root.root"
-sudo chown root.root "$USER"
+sudo chown root:root "$USER"
 
 echo
 echo "Please move file '$USER' to /persist/passwords/"
