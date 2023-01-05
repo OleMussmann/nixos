@@ -1,21 +1,7 @@
 { pkgs, lib, user, ... }:
 
 let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: { patches = [ ../../patches/kgx/atelierlakeside.alpha_0.97.hybrid.alpha_0.97.patch ]; } );
-#let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: {
-#  patches = [ 
-#    (pkgs.fetchpatch {
-#      url = "https://raw.githubusercontent.com/OleMussmann/kgx-themes/v0.0.1/patches/dark/dracula.alpha_0.95.patch";
-#      sha256 = "sha256-853zE8RJMlSVIQQmGKjp3Hvg5/aQtFHk6g5jz76knbA=";
-#    })
-#  ];
-#});
 in {
-  #imports =
-  #  [
-  #    #../../modules/desktop/bspwm/home.nix    # Window Manager
-  #    ../../modules/desktop/hyprland/home.nix  # Window Manager
-  #  ];
-
   fonts.fontconfig.enable = true;
 
   home = {                                # Specific packages for desktop
@@ -30,14 +16,16 @@ in {
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
       discord          # Comms
-      ffmpeg           # Video Support
+      ffmpeg           # Video support
       firefox          # Browser
-      gimp             # Graphical Editor
+      gimp             # Graphical editor
       handbrake        # Encoder
-      inkscape         # Vector Graphical Editor
-      libreoffice      # Office Packages
+      inkscape         # Vector graphical editor
+      keepassxc        # Password manager
+      libreoffice      # Office packages
+      nextcloud-client # File sync
       transmission     # Torrent client
-      xorg.xkill       # Kill Applications
+      xorg.xkill       # Kill applications
 
       # GNOME extensions
       gnomeExtensions.dash-to-dock
@@ -57,13 +45,14 @@ in {
         ];
       })
     ];
+
     sessionVariables = {
       FZF_DEFAULT_OPTS = "--color 16";  # use terminal color palette
     };
   };
 
+  # Configure GNOME
   dconf.settings = {
-
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
@@ -76,6 +65,7 @@ in {
       ];
     };
 
+    # Infinite scrollback
     "org/gnome/Console" = {
       scrollback-lines = "int64 -1";
     };
@@ -100,18 +90,12 @@ in {
       action-middle-click-titlebar = "minimize";
     };
 
+    # Silence!
     "org/gnome/desktop/sounds" = {
       event-sounds = "false";
     };
 
-    # Prevent screen timeout for VM
-    "org/gnome/desktop/session" = {
-      idle-delay = lib.hm.gvariant.mkUint32 0;
-    };
-    "org/gnome/settings-daemon/plugins/power" = {
-      sleep-inactive-ac-type = "nothing";
-    };
-
+    # Console keybindings
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
     };
@@ -145,10 +129,11 @@ in {
         ll = "ls -l";
         trash = "gio trash";
         update = "nix flake update --commit-lock-file /home/ole/.system";
-        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#nixos-vm";
+        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work";
       };
 
       # zsh options
+      # show file type with trailing identifying mark
       initExtra = ''
         LIST_TYPES="true"
       '';
@@ -166,7 +151,6 @@ in {
           "docker"             # completion and aliases
           "docker-compose"     # completion and aliases
         ];
-        theme = "robbyrussell";
       };
     };
 

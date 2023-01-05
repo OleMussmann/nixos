@@ -1,0 +1,7 @@
+- fix 'user' inconsistencies
+- agenix
+- put stateVerison in individual configs
+- deezer
+- configure nvim
+- ZFS snapshots
+- wipeclean https://github.com/JeanJouliaCode/wipeClean

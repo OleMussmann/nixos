@@ -7,7 +7,6 @@
 {
   imports =
     [(import ./hardware-configuration.nix)];# ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
-    #[(import ../../modules/games.nix)];          # Gaming
 
   # Use systemd boot (EFI only)
   boot.loader.systemd-boot.enable = true;
@@ -22,7 +21,7 @@
   fileSystems."/home".neededForBoot = true;
   fileSystems."/persist".neededForBoot = true;
 
-  networking.hostName = "nixos-vm"; # Define your hostname.
+  networking.hostName = "work"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -37,9 +36,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-  #   font = "Lat2-Terminus16";
     keyMap = "neo";
-  #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
   # Enable the X11 windowing system.
@@ -52,14 +49,6 @@
   # Configure keymap in X11
   services.xserver.layout = "de";
   services.xserver.xkbVariant = "neo";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
-
-  # Enable VM Guest features
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -103,6 +92,15 @@
     # discord
   ];
 
+  # Default applications
+  xdg.mime.defaultApplications = {
+    "text/html" = "firefox.desktop";
+    "x-scheme-handler/http" = "firefox.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/about" = "firefox.desktop";
+    "x-scheme-handler/unknown" = "firefox.desktop";
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
@@ -122,6 +120,11 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -129,4 +132,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
+
 }

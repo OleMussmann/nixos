@@ -5,12 +5,12 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "ehci_pci" "usbhid" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -45,17 +45,17 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/162D-5689";
+    { device = "/dev/disk/by-uuid/90F6-B62A";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/607e1733-5e49-436c-884b-c5ccf8d0664a"; }
+    [ { device = "/dev/disk/by-uuid/db239724-829c-4696-ae16-c72845b84419"; }
     ];
 
   # ZFS settings
   boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "8425e349";
+  networking.hostId = "aa3e43dd";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.zfs.devNodes = "/dev/disk/by-path";
   services.zfs.autoScrub.enable = true;
@@ -68,5 +68,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.ens3.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

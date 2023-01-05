@@ -1,0 +1,97 @@
+From e7e2d1929a03dfdb0751343708d3311db0a9c400 Mon Sep 17 00:00:00 2001
+From: ole <gitlab+account@ole.mn>
+Date: Sat, 10 Dec 2022 07:04:58 +0100
+Subject: [PATCH] theme template
+
+---
+ src/kgx-terminal.c | 64 ++++++++++++++++++++++++++++++----------------
+ 1 file changed, 42 insertions(+), 22 deletions(-)
+
+diff --git a/src/kgx-terminal.c b/src/kgx-terminal.c
+index 26ca81d..85339f0 100644
+--- a/src/kgx-terminal.c
++++ b/src/kgx-terminal.c
+@@ -113,24 +113,42 @@ update_terminal_colors (KgxTerminal *self)
+   GdkRGBA fg;
+   GdkRGBA bg;
+ 
+-  // Workings of GDK_RGBA prevent this being static
+-  GdkRGBA palette[16] = {
+-    GDK_RGBA ("241f31"), // Black
+-    GDK_RGBA ("c01c28"), // Red
+-    GDK_RGBA ("2ec27e"), // Green
+-    GDK_RGBA ("f5c211"), // Yellow
+-    GDK_RGBA ("1e78e4"), // Blue
+-    GDK_RGBA ("9841bb"), // Magenta
+-    GDK_RGBA ("0ab9dc"), // Cyan
+-    GDK_RGBA ("c0bfbc"), // White
+-    GDK_RGBA ("5e5c64"), // Bright Black
+-    GDK_RGBA ("ed333b"), // Bright Red
+-    GDK_RGBA ("57e389"), // Bright Green
+-    GDK_RGBA ("f8e45c"), // Bright Yellow
+-    GDK_RGBA ("51a1ff"), // Bright Blue
+-    GDK_RGBA ("c061cb"), // Bright Magenta
+-    GDK_RGBA ("4fd2fd"), // Bright Cyan
+-    GDK_RGBA ("f6f5f4"), // Bright White
++  GdkRGBA palette[16];
++  GdkRGBA light_palette[16] = {
++    GDK_RGBA ("161b1d"), // Black
++    GDK_RGBA ("d22d72"), // Red
++    GDK_RGBA ("568c3b"), // Green
++    GDK_RGBA ("8a8a0f"), // Yellow
++    GDK_RGBA ("257fad"), // Blue
++    GDK_RGBA ("5d5db1"), // Magenta
++    GDK_RGBA ("2d8f6f"), // Cyan
++    GDK_RGBA ("7ea2b4"), // White
++    GDK_RGBA ("5a7b8c"), // Bright Black
++    GDK_RGBA ("d22d72"), // Bright Red
++    GDK_RGBA ("568c3b"), // Bright Green
++    GDK_RGBA ("8a8a0f"), // Bright Yellow
++    GDK_RGBA ("257fad"), // Bright Blue
++    GDK_RGBA ("5d5db1"), // Bright Magenta
++    GDK_RGBA ("2d8f6f"), // Bright Cyan
++    GDK_RGBA ("ebf8ff"), // Bright White
++  };
++  GdkRGBA dark_palette[16] = {
++    GDK_RGBA ("282A2E"), // Black
++    GDK_RGBA ("A54242"), // Red
++    GDK_RGBA ("8C9440"), // Green
++    GDK_RGBA ("DE935F"), // Yellow
++    GDK_RGBA ("5F819D"), // Blue
++    GDK_RGBA ("85678F"), // Magenta
++    GDK_RGBA ("5E8D87"), // Cyan
++    GDK_RGBA ("707880"), // White
++    GDK_RGBA ("373B41"), // Bright Black
++    GDK_RGBA ("CC6666"), // Bright Red
++    GDK_RGBA ("B5BD68"), // Bright Green
++    GDK_RGBA ("F0C674"), // Bright Yellow
++    GDK_RGBA ("81A2BE"), // Bright Blue
++    GDK_RGBA ("B294BB"), // Bright Magenta
++    GDK_RGBA ("8ABEB7"), // Bright Cyan
++    GDK_RGBA ("C5C8C6"), // Bright White
+   };
+ 
+   if (self->theme == KGX_THEME_AUTO) {
+@@ -151,14 +169,16 @@ update_terminal_colors (KgxTerminal *self)
+       bg = (GdkRGBA) { 0.05, 0.05, 0.05, 0.96 };
+       break;
+     case KGX_THEME_DAY:
+-      fg = (GdkRGBA) { 0.0, 0.0, 0.0, 0.0 };
+-      bg = (GdkRGBA) { 1.0, 1.0, 1.0, 1.0 };
++      fg = (GdkRGBA) { 0.318, 0.427, 0.482, 1.00 };
++      bg = (GdkRGBA) { 0.922, 0.973, 1.000, 0.97 };
++      memcpy(palette, light_palette, sizeof(light_palette));
+       break;
+     case KGX_THEME_NIGHT:
+     case KGX_THEME_AUTO:
+     default:
+-      fg = (GdkRGBA) { 1.0, 1.0, 1.0, 1.0};
+-      bg = (GdkRGBA) { 0.05, 0.05, 0.05, 0.96 };
++      fg = (GdkRGBA) { 0.773, 0.784, 0.776, 1.00 };
++      bg = (GdkRGBA) { 0.114, 0.122, 0.129, 0.97 };
++      memcpy(palette, dark_palette, sizeof(dark_palette));
+       break;
+   }
+ 
+-- 
+2.38.1
