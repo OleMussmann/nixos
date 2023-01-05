@@ -60,6 +60,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
+  # Enable fingerprint reader support
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
   # Don't allow mutation of users outside of the config.
   users.mutableUsers = false;
 
@@ -86,7 +91,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # discord
+    #fprintd-tod
   ];
 
   # Default applications
