@@ -76,7 +76,10 @@ cd .system
 nixos-generate-config --show-hardware-config > hardware.txt
 
 [merge configs]
-[replace 'hostid' (command 'hostid')]
+[generate 'hostid' (command 'head -c 8 /etc/machine-id')]
+
+## make new config visible to flake
+git add .
 
 ## users
 
@@ -88,7 +91,9 @@ mkdir /mnt/persist/passwords
 mkdir -p /mnt/persist/etc/ssh
 mkdir -p /mnt/persist/var/db/sudo/lectured
 
-sudo nixos-install --root /mnt --flake .#nixos-vm
+sudo nixos-install --root /mnt --flake .#NEW_SYSTEM_NAME
+
+[enter random root password twice, it will be deleted anyways]
 
 [reboot]
 
