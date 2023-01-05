@@ -83,9 +83,6 @@
     passwordFile = "/persist/passwords/ole";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      gnome3.gnome-tweaks
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
