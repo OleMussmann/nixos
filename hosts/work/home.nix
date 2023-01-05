@@ -78,6 +78,10 @@ in {
       dock-position = "LEFT";
     };
 
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+    };
+
     "org/gnome/desktop/calendar" = {
       show-weekdate = true;
     };
