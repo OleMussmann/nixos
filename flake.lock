@@ -92,15 +92,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1672390836,
-        "narHash": "sha256-RyN1RUSyIvfRUB1DvhKjP4xpzyd5/7fQ6HKNTCXnjHs=",
+        "lastModified": 1672932607,
+        "narHash": "sha256-+q+bwjpKV1jL6R/bNgM1w43umB6T2sTBTwfi5MXThOA=",
         "owner": "OleMussmann",
         "repo": "Nix-Package-Search",
-        "rev": "690cb7aa6691c690dad384972e777618b689f2fd",
+        "rev": "f9bec6900892f1eb13466a21af6efa5bcac4763e",
         "type": "github"
       },
       "original": {
         "owner": "OleMussmann",
+        "ref": "development",
         "repo": "Nix-Package-Search",
         "type": "github"
       }
