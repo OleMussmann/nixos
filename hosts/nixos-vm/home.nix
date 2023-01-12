@@ -71,8 +71,10 @@ in {
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
-        "org.gnome.Nautilus.desktop"
+        "chromium-browser.desktop"
         "org.gnome.Console.desktop"
+	"org.keepassxc.KeePassXC.desktop"
+        "org.gnome.Nautilus.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
