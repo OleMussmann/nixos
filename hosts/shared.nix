@@ -8,6 +8,7 @@
   # Default packages, install system-wide
   environment.systemPackages = with pkgs; [
     bat              # `cat` with syntax highlighting
+    broot            # better `tree`
     btop             # system monitor
     htop             # system monitor
     killall          # kill process by name
