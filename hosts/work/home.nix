@@ -150,11 +150,9 @@ in {
         update = "nix flake update --commit-lock-file /home/ole/.system";
         upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work";
       };
-      promptInit = ''
-        any-shell-nix fish | source
-      '';
       interactiveShellInit = ''
         set fish_greeting ""
+        any-nix-shell fish | source
       '';
     };
 

@@ -107,6 +107,9 @@ in {
       action-right-click-titlebar = "menu";
       action-middle-click-titlebar = "minimize";
     };
+    "org/gnome/desktop/peripherals/mouse" = {
+      natural-scroll = true;
+    };
 
     # Silence!
     "org/gnome/desktop/sounds" = {
