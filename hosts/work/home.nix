@@ -69,6 +69,7 @@ in {
         "firefox.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
+	"slack.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
