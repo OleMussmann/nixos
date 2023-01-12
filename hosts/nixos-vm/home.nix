@@ -36,6 +36,7 @@ in {
       handbrake        # Encoder
       inkscape         # Vector graphical editor
       libreoffice      # Office packages
+      logseq           # knowledge base
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
