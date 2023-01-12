@@ -73,6 +73,7 @@ in {
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
       ];
     };
 
