@@ -74,6 +74,7 @@ in {
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
+        "chromium-browser.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
 	"logseq.desktop"
