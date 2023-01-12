@@ -79,17 +79,17 @@
     isNormalUser = true;
     passwordFile = "/persist/passwords/ole";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 
   nixpkgs.config.allowUnfree = true;
 
-  # add zsh to /etc/shells
-  # otherwise GDM does not show users with zsh
-  environment.shells = with pkgs; [ zsh ];
+  # add fish to /etc/shells
+  # otherwise GDM does not show users with fish
+  environment.shells = with pkgs; [ fish ];
 
   # enable completion for system packages like systemd
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [ "/share/fish" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
