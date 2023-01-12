@@ -39,6 +39,9 @@
     keyMap = "neo";
   };
 
+  # enable gnome-settings-daemon udev rules
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -92,6 +95,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #fprintd-tod
+    slack-dark
   ];
 
   # Default applications

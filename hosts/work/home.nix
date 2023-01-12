@@ -24,11 +24,12 @@ in {
       keepassxc        # Password manager
       libreoffice      # Office packages
       nextcloud-client # File sync
-      slack-dark       # Comms
+      #slack-dark       # Comms
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
       # GNOME extensions
+      gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
