@@ -19,6 +19,7 @@ in {
       ffmpeg           # Video support
       firefox          # Browser
       gimp             # Graphical editor
+      grc              # generic colorizer
       handbrake        # Encoder
       inkscape         # Vector graphical editor
       keepassxc        # Password manager
@@ -41,7 +42,7 @@ in {
       kgx_patched
 
       # fish plugins
-      fishPlugins.autopair           # helper for brackets and quotation marks
+      fishPlugins.autopair-fish      # helper for brackets and quotation marks
       fishPlugins.colored-man-pages  # yay, colors!
       fishPlugins.grc                # generic colorizer
       fishPlugins.sponge             # remove failed commands from history
