@@ -51,7 +51,13 @@ in {
     ];
 
     sessionVariables = {
+      # fuzzy finder
       FZF_DEFAULT_OPTS = "--color 16";  # use terminal color palette
+
+      # nps
+      NIX_PACKAGE_SEARCH_FLIP = "true";
+      NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
+      NIX_PACKAGE_SEARCH_SHOW_PACKAGE_DESCRIPTION = "false";
     };
   };
 
