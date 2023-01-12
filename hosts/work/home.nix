@@ -24,6 +24,7 @@ in {
       inkscape         # Vector graphical editor
       keepassxc        # Password manager
       libreoffice      # Office packages
+      logseq           # knowledge base
       nextcloud-client # File sync
       #slack-dark       # Comms
       transmission     # Torrent client
@@ -75,6 +76,7 @@ in {
         "firefox.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
+	"logseq.desktop"
 	"slack.desktop"
       ];
       enabled-extensions = [
