@@ -12,6 +12,7 @@ in {
 
     packages = with pkgs; [
       # Applications
+      any-nix-shell    # use fish in nix-shell
       appimage-run     # Runs AppImages on NixOS
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
@@ -147,6 +148,9 @@ in {
         update = "nix flake update --commit-lock-file /home/ole/.system";
         upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work";
       };
+      promptInit = ''
+        any-shell-nix fish | source
+      '';
       interactiveShellInit = ''
         set fish_greeting ""
       '';
