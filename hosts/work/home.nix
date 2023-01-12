@@ -24,6 +24,7 @@ in {
       keepassxc        # Password manager
       libreoffice      # Office packages
       nextcloud-client # File sync
+      slack-dark       # Comms
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
