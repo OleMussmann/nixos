@@ -26,6 +26,7 @@ in {
 
     packages = with pkgs; [
       # Applications
+      any-nix-shell    # use fish in nix-shell
       appimage-run     # Runs AppImages on NixOS
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
@@ -53,6 +54,11 @@ in {
 
       # Patched packages
       kgx_patched
+
+      # fish plugins
+      fishPlugins.autopair-fish      # helper for brackets and quotation marks
+      fishPlugins.colored-man-pages  # yay, colors!
+      fishPlugins.sponge             # remove failed commands from history
 
       # Overrides
       (nerdfonts.override {
@@ -156,47 +162,26 @@ in {
     command-not-found.enable = false;  # broken for flakes-only builds without channels
     nix-index.enable = true;           # use nix-index instead of command-not-found
 
-    zsh = {
+    fish = {
       enable = true;
-      defaultKeymap = "viins";
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
-      history = {
-        expireDuplicatesFirst = true;
-        extended = true;     # save timestamps
-        save = 100000;
-        size = 100000;
-      };
-      historySubstringSearch = {
-        enable = true;
+      #functions = {
+      #  __fish_command_not_found_handler = {
+      #    body = "~/bin/command-not-found $argv[1]";
+      #    onEvent = "fish_command_not_found";
+      #  };
+      #};
+      shellAbbrs = {
+        ll = "ls -l";
       };
       shellAliases = {
-        ll = "ls -l";
         trash = "gio trash";
         update = "nix flake update --commit-lock-file /home/ole/.system";
-        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#nixos-vm";
+        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work";
       };
-
-      # zsh options
-      # show file type with trailing identifying mark
-      initExtra = ''
-        LIST_TYPES="true"
+      interactiveShellInit = ''
+        set fish_greeting ""
+        any-nix-shell fish | source
       '';
-
-      # oh-my-zsh options
-      localVariables = {
-        ENABLE_CORRECTION = "true";
-        COMPLETION_WAITING_DOTS = "true";
-      };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "colored-man-pages"
-          "history"            # aliases h, hs (search), hsi (search case-insensitive)
-          "docker"             # completion and aliases
-          "docker-compose"     # completion and aliases
-        ];
-      };
     };
 
     fzf ={
