@@ -39,6 +39,9 @@
     keyMap = "neo";
   };
 
+  # enable gnome-settings-daemon udev rules
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -60,6 +63,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
+  # Enable fingerprint reader support
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
   # Don't allow mutation of users outside of the config.
   users.mutableUsers = false;
 
@@ -71,25 +79,23 @@
     isNormalUser = true;
     passwordFile = "/persist/passwords/ole";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      gnome3.gnome-tweaks
-    ];
+    shell = pkgs.fish;
   };
 
   nixpkgs.config.allowUnfree = true;
 
-  # add zsh to /etc/shells
-  # otherwise GDM does not show users with zsh
-  environment.shells = with pkgs; [ zsh ];
+  # add fish to /etc/shells
+  # otherwise GDM does not show users with fish
+  environment.shells = with pkgs; [ fish ];
 
   # enable completion for system packages like systemd
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [ "/share/fish" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # discord
+    #fprintd-tod
+    slack-dark
   ];
 
   # Default applications

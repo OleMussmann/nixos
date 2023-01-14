@@ -12,6 +12,7 @@ in {
 
     packages = with pkgs; [
       # Applications
+      any-nix-shell    # use fish in nix-shell
       appimage-run     # Runs AppImages on NixOS
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
@@ -23,17 +24,28 @@ in {
       inkscape         # Vector graphical editor
       keepassxc        # Password manager
       libreoffice      # Office packages
+      logseq           # knowledge base
       nextcloud-client # File sync
+      #slack-dark       # Comms
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
       # GNOME extensions
+      gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
 
+      # Extra GNOME packages
+      gnome3.gnome-tweaks
+
       # Patched packages
       kgx_patched
+
+      # fish plugins
+      fishPlugins.autopair-fish      # helper for brackets and quotation marks
+      fishPlugins.colored-man-pages  # yay, colors!
+      fishPlugins.sponge             # remove failed commands from history
 
       # Overrides
       (nerdfonts.override {
@@ -47,8 +59,27 @@ in {
     ];
 
     sessionVariables = {
+      # fuzzy finder
       FZF_DEFAULT_OPTS = "--color 16";  # use terminal color palette
+
+      # nps
+      NIX_PACKAGE_SEARCH_FLIP = "true";
+      NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
+      NIX_PACKAGE_SEARCH_SHOW_PACKAGE_DESCRIPTION = "false";
     };
+
+    #file = {
+    #  # enable command-not-found for fish
+    #  "bin/nix-command-not-found" = {
+    #    text = ''
+    #      #!/usr/bin/env bash
+    #      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+    #      command_not_found_handle "$@"
+    #    '';
+
+    #    executable = true;
+    #  };
+    #};
   };
 
   # Configure GNOME
@@ -56,22 +87,37 @@ in {
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
+        "chromium-browser.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
+	"logseq.desktop"
+	"slack.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
       ];
     };
 
-    # Infinite scrollback
     "org/gnome/Console" = {
-      scrollback-lines = "int64 -1";
+      
+      scrollback-lines = "int64 -1";  # Infinite scrollback
+      theme = "auto";
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "LEFT";
+      extend-height = true;
+      show-apps-at-top = true;
+      custom-theme-shrink = true;
+      apply-custom-theme = true;
+      disable-overview-on-startup = true;
+    };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+      speed = 0.45;
     };
 
     "org/gnome/desktop/calendar" = {
@@ -111,47 +157,26 @@ in {
     command-not-found.enable = false;  # broken for flakes-only builds without channels
     nix-index.enable = true;           # use nix-index instead of command-not-found
 
-    zsh = {
+    fish = {
       enable = true;
-      defaultKeymap = "viins";
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
-      history = {
-        expireDuplicatesFirst = true;
-        extended = true;     # save timestamps
-        save = 100000;
-        size = 100000;
-      };
-      historySubstringSearch = {
-        enable = true;
+      #functions = {
+      #  __fish_command_not_found_handler = {
+      #    body = "~/bin/command-not-found $argv[1]";
+      #    onEvent = "fish_command_not_found";
+      #  };
+      #};
+      shellAbbrs = {
+        ll = "ls -l";
       };
       shellAliases = {
-        ll = "ls -l";
         trash = "gio trash";
         update = "nix flake update --commit-lock-file /home/ole/.system";
         upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work";
       };
-
-      # zsh options
-      # show file type with trailing identifying mark
-      initExtra = ''
-        LIST_TYPES="true"
+      interactiveShellInit = ''
+        set fish_greeting ""
+        any-nix-shell fish | source
       '';
-
-      # oh-my-zsh options
-      localVariables = {
-        ENABLE_CORRECTION = "true";
-        COMPLETION_WAITING_DOTS = "true";
-      };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "colored-man-pages"
-          "history"            # aliases h, hs (search), hsi (search case-insensitive)
-          "docker"             # completion and aliases
-          "docker-compose"     # completion and aliases
-        ];
-      };
     };
 
     fzf ={

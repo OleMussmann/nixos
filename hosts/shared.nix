@@ -8,7 +8,9 @@
   # Default packages, install system-wide
   environment.systemPackages = with pkgs; [
     bat              # `cat` with syntax highlighting
+    broot            # better `tree`
     btop             # system monitor
+    fd               # better `find`
     htop             # system monitor
     killall          # kill process by name
     neofetch         # display system stats
