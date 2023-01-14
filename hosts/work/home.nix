@@ -117,6 +117,7 @@ in {
 
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;
+      speed = 0.45;
     };
 
     "org/gnome/desktop/calendar" = {
