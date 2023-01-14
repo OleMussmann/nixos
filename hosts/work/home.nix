@@ -67,6 +67,19 @@ in {
       NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
       NIX_PACKAGE_SEARCH_SHOW_PACKAGE_DESCRIPTION = "false";
     };
+
+    #file = {
+    #  # enable command-not-found for fish
+    #  "bin/nix-command-not-found" = {
+    #    text = ''
+    #      #!/usr/bin/env bash
+    #      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+    #      command_not_found_handle "$@"
+    #    '';
+
+    #    executable = true;
+    #  };
+    #};
   };
 
   # Configure GNOME
@@ -145,6 +158,12 @@ in {
 
     fish = {
       enable = true;
+      #functions = {
+      #  __fish_command_not_found_handler = {
+      #    body = "~/bin/command-not-found $argv[1]";
+      #    onEvent = "fish_command_not_found";
+      #  };
+      #};
       shellAbbrs = {
         ll = "ls -l";
       };
