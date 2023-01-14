@@ -35,12 +35,15 @@ in {
       gimp             # Graphical editor
       handbrake        # Encoder
       inkscape         # Vector graphical editor
+      keepassxc        # Password manager
       libreoffice      # Office packages
       logseq           # knowledge base
+      nextcloud-client # File sync
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
       # GNOME extensions
+      gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
@@ -63,7 +66,13 @@ in {
     ];
 
     sessionVariables = {
+      # fuzzy finder
       FZF_DEFAULT_OPTS = "--color 16";  # use terminal color palette
+
+      # nps
+      NIX_PACKAGE_SEARCH_FLIP = "true";
+      NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
+      NIX_PACKAGE_SEARCH_SHOW_PACKAGE_DESCRIPTION = "false";
     };
   };
 
@@ -80,6 +89,7 @@ in {
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
       ];
     };
 
@@ -91,6 +101,11 @@ in {
 
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "LEFT";
+      extend-height = true;
+      show-apps-at-top = true;
+      custom-theme-shrink = true;
+      apply-custom-theme = true;
+      disable-overview-on-startup = true;
     };
 
     "org/gnome/desktop/calendar" = {
