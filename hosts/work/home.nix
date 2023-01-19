@@ -91,8 +91,8 @@ in {
         "chromium-browser.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
-	"logseq.desktop"
-	"slack.desktop"
+        "logseq.desktop"
+        "slack.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
