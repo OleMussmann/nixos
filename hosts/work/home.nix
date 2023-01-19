@@ -27,6 +27,7 @@ in {
       logseq           # knowledge base
       nextcloud-client # File sync
       slack-dark       # Comms
+      todoist-electron # todo app
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
