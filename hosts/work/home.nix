@@ -26,7 +26,7 @@ in {
       libreoffice      # Office packages
       logseq           # knowledge base
       nextcloud-client # File sync
-      #slack-dark       # Comms
+      slack-dark       # Comms
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
