@@ -40,11 +40,11 @@
       "locked": {
         "lastModified": 1674225799,
         "narHash": "sha256-PiHcuCMDpKz5M9B8/PPboJ19GhdrtayKzd3yS8tEFQw=",
-        "path": "/home/ole/bin/fzf_search",
+        "path": "/home/ole/bin/fzf-search",
         "type": "path"
       },
       "original": {
-        "path": "/home/ole/bin/fzf_search",
+        "path": "/home/ole/bin/fzf-search",
         "type": "path"
       }
     },
