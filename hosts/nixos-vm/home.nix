@@ -176,7 +176,7 @@ in {
       shellAliases = {
         trash = "gio trash";
         update = "nix flake update --commit-lock-file /home/ole/.system";
-        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work";
+        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#nixos-vm";
       };
       interactiveShellInit = ''
         set fish_greeting ""
