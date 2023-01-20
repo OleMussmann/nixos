@@ -38,8 +38,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1674225799,
-        "narHash": "sha256-PiHcuCMDpKz5M9B8/PPboJ19GhdrtayKzd3yS8tEFQw=",
+        "lastModified": 1674227290,
+        "narHash": "sha256-7RudPipUpINWxGBJUDsqtOUAOHMOYULjiL7NcLn0MTw=",
         "path": "/home/ole/bin/fzf_search",
         "type": "path"
       },
