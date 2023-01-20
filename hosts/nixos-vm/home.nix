@@ -130,7 +130,10 @@ in {
       action-middle-click-titlebar = "minimize";
     };
     "org/gnome/desktop/peripherals/mouse" = {
-      natural-scroll = true;
+      natural-scroll = false;
+    };
+    "org/gnome/mutter" = {
+      edge-tiling = true;
     };
 
     # Silence!
