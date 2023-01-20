@@ -104,14 +104,18 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1674205094,
-        "narHash": "sha256-bLBM5CkAbayn3qMt8wf/ZGFFrX4ytfQtRB8IhjuK/3k=",
-        "path": "/home/ole/bin/Nix-Package-Search",
-        "type": "path"
+        "lastModified": 1674205293,
+        "narHash": "sha256-bEuOrDUVPRlNcHXYCEQJ8tr5SShfOA8Z1Q+dTcpcm0U=",
+        "owner": "OleMussmann",
+        "repo": "Nix-Package-Search",
+        "rev": "241313618f89e79a79842825d169a42144b47023",
+        "type": "github"
       },
       "original": {
-        "path": "/home/ole/bin/Nix-Package-Search",
-        "type": "path"
+        "owner": "OleMussmann",
+        "ref": "development",
+        "repo": "Nix-Package-Search",
+        "type": "github"
       }
     },
     "root": {
