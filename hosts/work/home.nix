@@ -26,7 +26,8 @@ in {
       libreoffice      # Office packages
       logseq           # knowledge base
       nextcloud-client # File sync
-      #slack-dark       # Comms
+      slack-dark       # Comms
+      todoist-electron # todo app
       transmission     # Torrent client
       xorg.xkill       # Kill applications
 
@@ -90,8 +91,8 @@ in {
         "chromium-browser.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
-	"logseq.desktop"
-	"slack.desktop"
+        "logseq.desktop"
+        "slack.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
@@ -156,6 +157,11 @@ in {
     home-manager.enable = true;
     command-not-found.enable = false;  # broken for flakes-only builds without channels
     nix-index.enable = true;           # use nix-index instead of command-not-found
+
+    direnv = {                         # custom environments per directory
+      enable = true;
+      nix-direnv.enable = true;
+    };
 
     fish = {
       enable = true;

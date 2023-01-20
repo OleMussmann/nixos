@@ -95,7 +95,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #fprintd-tod
-    slack-dark
+    #slack-dark
   ];
 
   # Default applications
