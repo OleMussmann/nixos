@@ -12,10 +12,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nix Package Search
-    nps.url = "github:OleMussmann/Nix-Package-Search/development";
+    #nps.url = "github:OleMussmann/Nix-Package-Search/development";
     #nps.url = "github:OleMussmann/Nix-Package-Search";
-    #nps.url = "path:/home/ole/bin/Nix-Package-Search";
-    nps.inputs.nixpkgs.follows = "nixpkgs";
+    nps.url = "path:/home/ole/bin/Nix-Package-Search";
+
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
