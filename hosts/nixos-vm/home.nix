@@ -167,12 +167,9 @@ in {
 
     fish = {
       enable = true;
-      #functions = {
-      #  __fish_command_not_found_handler = {
-      #    body = "~/bin/command-not-found $argv[1]";
-      #    onEvent = "fish_command_not_found";
-      #  };
-      #};
+      functions = {
+        take = "mkdir -p \"$argv\"; and cd \"$argv[-1]\"";
+      };
       shellAbbrs = {
         ll = "ls -l";
       };
