@@ -165,6 +165,11 @@ in {
     command-not-found.enable = false;  # broken for flakes-only builds without channels
     nix-index.enable = true;           # use nix-index instead of command-not-found
 
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     fish = {
       enable = true;
       functions = {
