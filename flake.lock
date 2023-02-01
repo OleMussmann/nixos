@@ -104,8 +104,8 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1673107053,
-        "narHash": "sha256-UF8FTIfXB0GqBNgagUkJlW9u77fP39QR6Kqy4I2bU7g=",
+        "lastModified": 1675259640,
+        "narHash": "sha256-MErZfKaVI5arwPNVLj/mLPnX7hHDHBNTXd4kPVOQEks=",
         "path": "/home/ole/bin/Nix-Package-Search",
         "type": "path"
       },
