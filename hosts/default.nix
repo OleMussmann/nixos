@@ -1,4 +1,5 @@
-{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays-third-party, ... }:
+{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays-third-party, nur, ... }:
+#{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays, ... }:
 
 {
   nixos-vm = nixpkgs.lib.nixosSystem {                      # VM profile
@@ -7,9 +8,10 @@
     modules = [                                             # Modules that are used
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [
-	  overlays-third-party
+          overlays-third-party
         ];
       })
+      nur.nixosModules.nur
       ./nixos-vm
       ./shared.nix
 
@@ -30,19 +32,20 @@
     modules = [                                             # Modules that are used
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [
-	  overlays-third-party
+          overlays-third-party
         ];
       })
       nixos-hardware.nixosModules.dell-xps-13-9310          # Hardware support
+      nur.nixosModules.nur
       ./work
       ./shared.nix
 
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user; };  # Pass flake variable
+        home-manager.extraSpecialArgs = { inherit user nur; };  # Pass flake variable
         home-manager.users.${user} = {
-          imports = [(import ./work/home.nix)];
+          imports = [(import ./work/home.nix) nur.nixosModules.nur];
         };
       }
     ];

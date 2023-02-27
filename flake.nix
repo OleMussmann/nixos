@@ -16,17 +16,18 @@
     #nps.url = "github:OleMussmann/Nix-Package-Search";
     nps.url = "path:/home/ole/bin/Nix-Package-Search";
 
-
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
 
+    # Nix User Repository NUR
+    nur.url = github:nix-community/NUR;
     
     # NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   # Output config, or config for NixOS system
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, nur, ... }@inputs:
   let
     user = "ole";
     overlays-third-party = final: prev: {
@@ -41,7 +42,7 @@
     nixosConfigurations = (                                 # NixOS configurations
       import ./hosts {                                      # Imports ./hosts/default.nix
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager user nixos-hardware overlays-third-party;  # Also inherit home-manager so it does not need to be defined here.
+        inherit inputs nixpkgs home-manager user nixos-hardware overlays-third-party nur;  # Also inherit home-manager so it does not need to be defined here.
         }
       );
   };
