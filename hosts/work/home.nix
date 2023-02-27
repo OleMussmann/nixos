@@ -17,6 +17,7 @@ in {
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
       discord          # Comms
+      element-desktop  # Comms
       ffmpeg           # Video support
       #firefox          # Browser
       gimp             # Graphical editor
@@ -30,9 +31,11 @@ in {
       todoist-electron # todo app
       transmission     # Torrent client
       xorg.xkill       # Kill applications
+      zoom-us          # comms
 
       # GNOME extensions
       gnomeExtensions.appindicator
+      gnomeExtensions.caffeine
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
@@ -89,15 +92,18 @@ in {
       favorite-apps = [
         "firefox.desktop"
         "chromium-browser.desktop"
-        "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
+        "org.keepassxc.KeePassXC.desktop"
+        "org.gnome.Nautilus.desktop"
         "logseq.desktop"
         "slack.desktop"
+	"element-desktop.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "caffeine@patapon.info"
       ];
     };
 
