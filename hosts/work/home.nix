@@ -136,6 +136,7 @@ in {
       document-font-name = "Ubuntu Nerd Font 11";
       font-name = "Ubuntu Nerd Font 11";
       monospace-font-name = "UbuntuMono Nerd Font Mono 13";
+      show-battery-percentage = true;
     };
     "org/gnome/desktop/wm/preferences" = {
       titlebar-font = "Ubuntu Nerd Font Bold 11";
