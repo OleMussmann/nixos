@@ -15,7 +15,7 @@
     #nps.url = "github:OleMussmann/Nix-Package-Search/development";
     #nps.url = "github:OleMussmann/Nix-Package-Search";
     nps.url = "path:/home/ole/bin/Nix-Package-Search";
-
+    nps.inputs.nixpkgs.follows = "nixpkgs";
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
