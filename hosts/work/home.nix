@@ -141,6 +141,7 @@ in {
       titlebar-font = "Ubuntu Nerd Font Bold 11";
       action-right-click-titlebar = "menu";
       action-middle-click-titlebar = "minimize";
+      button-layout = "appmenu:minimize,maximize,close";
     };
 
     # Silence!
