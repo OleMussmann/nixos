@@ -1,3 +1,4 @@
+- delete channels
 - fix 'user' inconsistencies
 - agenix
 - put stateVerison in individual configs
@@ -5,3 +6,12 @@
 - configure nvim
 - ZFS snapshots
 - wipeclean https://github.com/JeanJouliaCode/wipeClean
+
+# for the future
+- mcfly
+- navi
+- zoxide
+- ruff
+- (study neovim-ide)
+- exa
+- skim

@@ -10,13 +10,14 @@
     bat              # `cat` with syntax highlighting
     broot            # better `tree`
     btop             # system monitor
+    exa              # better `ls`
     fd               # better `find`
     htop             # system monitor
     killall          # kill process by name
     neofetch         # display system stats
     ncdu             # analyze disk usage
     neovim           # editor
-    tldr             # Helper
+    tealdeer         # command summaries
     tmux             # terminal multiplexer
     tree             # print directory structure
     unzip            # Zip files

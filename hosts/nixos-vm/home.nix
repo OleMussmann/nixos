@@ -36,6 +36,7 @@ in {
       gimp             # Graphical editor
       handbrake        # Encoder
       inkscape         # Vector graphical editor
+      jq               # json parser
       keepassxc        # Password manager
       libreoffice      # Office packages
       logseq           # knowledge base
@@ -165,14 +166,16 @@ in {
     command-not-found.enable = false;  # broken for flakes-only builds without channels
     nix-index.enable = true;           # use nix-index instead of command-not-found
 
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     fish = {
       enable = true;
-      #functions = {
-      #  __fish_command_not_found_handler = {
-      #    body = "~/bin/command-not-found $argv[1]";
-      #    onEvent = "fish_command_not_found";
-      #  };
-      #};
+      functions = {
+        take = "mkdir -p \"$argv\"; and cd \"$argv[-1]\"";
+      };
       shellAbbrs = {
         ll = "ls -l";
       };
@@ -183,6 +186,7 @@ in {
       };
       interactiveShellInit = ''
         set fish_greeting ""
+	fish_vi_key_bindings
         any-nix-shell fish | source
       '';
     };
@@ -211,6 +215,16 @@ in {
           error_symbol = " [](#df5b61)";
           vicmd_symbol = "[  ](#78b892)";
         };
+	custom = {
+	  direnv = {
+	    command = "nix flake metadata --json 2>/dev/null | jq '.description' | sed -e 's/\"//g'; if [ \"\$\{PIPESTATUS[0]\}\" != \"0\" ]; then basename \"$PWD\"; fi ";
+	    shell = "bash";
+	    format = "[$symbol$output]($style)";
+	    style = "fg:bold green";
+	    symbol = "📁 ";
+	    when = "env | grep -E '^DIRENV_FILE='";
+	  };
+	};
         hostname = {
           ssh_only = true;
           format = "[$hostname](bold blue) ";
