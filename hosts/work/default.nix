@@ -39,34 +39,43 @@
     keyMap = "neo";
   };
 
-  # enable gnome-settings-daemon udev rules
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services = {
+    # enable gnome-settings-daemon udev rules
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+    # Enable the X11 windowing system.
+    xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+    # Enable the GNOME Desktop Environment.
+    xserver.displayManager.gdm.enable = true;
+    xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.layout = "de";
-  services.xserver.xkbVariant = "neo";
+    # Configure keymap in X11
+    xserver.layout = "de";
+    xserver.xkbVariant = "neo";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+    # Enable CUPS to print documents.
+    printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+    # ! Clashes with pipewire !
+    # Enable sound.
+    #sound.enable = true;
+    #hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+    # Enable touchpad support (enabled default in most desktopManager).
+    xserver.libinput.enable = true;
 
-  # Enable fingerprint reader support
-  services.fprintd.enable = true;
-  services.fprintd.tod.enable = true;
-  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+    # Enable fingerprint reader support
+    fprintd.enable = true;
+    fprintd.tod.enable = true;
+    fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
+    # Pipewire
+    pipewire.enable = true;
+
+    # Enable Gnome browser plugins
+    gnome.gnome-browser-connector.enable = true;
+  };
 
   # Don't allow mutation of users outside of the config.
   users.mutableUsers = false;
