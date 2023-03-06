@@ -43,6 +43,9 @@
     # enable gnome-settings-daemon udev rules
     udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
+    # Firmware updates
+    fwupd.enable = true;
+
     # Enable the X11 windowing system.
     xserver.enable = true;
 
