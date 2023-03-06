@@ -114,12 +114,13 @@ in {
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = true;
+      custom-theme-shrink = true;
+      disable-overview-on-startup = true;
       dock-position = "LEFT";
       extend-height = true;
       show-apps-at-top = true;
-      custom-theme-shrink = true;
-      apply-custom-theme = true;
-      disable-overview-on-startup = true;
+      show-show-apps-button = false;
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
