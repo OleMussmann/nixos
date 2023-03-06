@@ -27,6 +27,7 @@ in {
       libreoffice      # Office packages
       logseq           # knowledge base
       nextcloud-client # File sync
+      nvd              # nix version diff tool
       slack-dark       # Comms
       todoist-electron # todo app
       transmission     # Torrent client
@@ -235,7 +236,8 @@ in {
       shellAliases = {
         trash = "gio trash";
         update = "nix flake update --commit-lock-file /home/ole/.system";
-        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work";
+        upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work &&
+	  nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link | tail -n 2)";
       };
       interactiveShellInit = ''
         set fish_greeting ""
@@ -243,7 +245,7 @@ in {
       '';
     };
 
-    fzf ={
+    fzf = {
       enable = true;
       tmux.enableShellIntegration = true;
     };
