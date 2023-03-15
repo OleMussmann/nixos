@@ -98,7 +98,7 @@ in {
         "org.gnome.Nautilus.desktop"
         "logseq.desktop"
         "slack.desktop"
-	"element-desktop.desktop"
+        "element-desktop.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
@@ -182,7 +182,7 @@ in {
         isDefault = true;
         search.force = true;  # Keep firefox from overwriting search.json.mozlz4
         search.default = "DuckDuckGo";
-	search.engines = {
+        search.engines = {
           "Nix Packages" = {
             urls = [{
               template = "https://search.nixos.org/packages";
@@ -194,10 +194,10 @@ in {
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@np" ];
           };
-	};
+        };
         settings = {
-	  "browser.startup.page" = 3;  # Restore previous session
-	  "browser.toolbars.bookmarks.visibility" = "never";
+          "browser.startup.page" = 3;  # Restore previous session
+          "browser.toolbars.bookmarks.visibility" = "never";
           "browser.newtabpage.activity-stream.topSitesRows" = 2;
           "signon.rememberSignons" = false;
           "browser.newtabpage.pinned" = "[{\"url\":\"https://www.heise.de/\",\"label\":\"heise\"},{\"url\":\"https://www.golem.de/\",\"label\":\"golem\"},{\"url\":\"https://tweakers.net/\",\"label\":\"tweakers\"},{\"url\":\"https://arstechnica.com/\"},{\"url\":\"https://www.phoronix.com/\",\"label\":\"phoronix\"},{\"url\":\"https://www.theverge.com/\"},{\"url\":\"https://www.engadget.com\",\"label\":\"engadget\"},{\"url\":\"https://www.trustedreviews.com/\",\"label\":\"trustedreviews\"},{\"url\":\"https://www.theregister.com/\",\"label\":\"theregister\"},{\"url\":\"https://search.nixos.org/\",\"label\":\"search.nixos\"},{\"url\":\"https://nix-community.github.io/home-manager/options.html\",\"label\":\"nix-community\"}]";
@@ -205,7 +205,7 @@ in {
       };
       extensions = with config.nur.repos.rycee.firefox-addons; [
         consent-o-matic
-	darkreader
+        darkreader
         floccus
         gsconnect
         keepassxc-browser
@@ -237,7 +237,7 @@ in {
         trash = "gio trash";
         update = "nix flake update --commit-lock-file /home/ole/.system";
         upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system#work &&
-	  nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link | tail -n 2)";
+          nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link | tail -n 2)";
       };
       interactiveShellInit = ''
         set fish_greeting ""
