@@ -161,6 +161,11 @@ in {
       command = "kgx";
       name = "Launch Console";
     };
+
+    # Fractional scaling
+    "org/gnome/mutter" = {
+      experimental-features = [ "scale-monitor-framebuffer" ];
+    };
   };
 
   programs = {
