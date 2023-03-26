@@ -90,9 +90,14 @@
   users.users.ole = {
     isNormalUser = true;
     passwordFile = "/persist/passwords/ole";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"  # Enable ‘sudo’ for the user.
+      "docker"
+    ];
     shell = pkgs.fish;
   };
+
+  virtualisation.docker.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
