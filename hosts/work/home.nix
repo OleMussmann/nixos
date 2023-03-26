@@ -211,6 +211,7 @@ in {
       extensions = with config.nur.repos.rycee.firefox-addons; [
         consent-o-matic
         darkreader
+        duckduckgo-privacy-essentials
         floccus
         gsconnect
         keepassxc-browser
