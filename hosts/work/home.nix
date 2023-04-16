@@ -29,7 +29,6 @@ in {
       nextcloud-client # File sync
       nvd              # nix version diff tool
       slack-dark       # Comms
-      tailscale        # mesh vpn
       todoist-electron # todo app
       transmission     # Torrent client
       xorg.xkill       # Kill applications

@@ -78,6 +78,9 @@
 
     # Enable Gnome browser plugins
     gnome.gnome-browser-connector.enable = true;
+
+    # Mesh VPN
+    tailscale.enable = true;
   };
 
   # Don't allow mutation of users outside of the config.
