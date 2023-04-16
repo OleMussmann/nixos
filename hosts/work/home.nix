@@ -26,14 +26,20 @@ in {
       inkscape         # Vector graphical editor
       keepassxc        # Password manager
       libreoffice      # Office packages
-      logseq           # knowledge base
       nextcloud-client # File sync
       nvd              # nix version diff tool
       slack-dark       # Comms
+      tailscale        # mesh vpn
       todoist-electron # todo app
       transmission     # Torrent client
       xorg.xkill       # Kill applications
       zoom-us          # comms
+
+      # Applications from unstable channel
+      unstable.logseq           # knowledge base
+
+      # Applications from third party repos
+      third-party.entangled
 
       # GNOME extensions
       gnomeExtensions.appindicator
@@ -41,6 +47,8 @@ in {
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
+      gnomeExtensions.taildrop-send
+      gnomeExtensions.tailscale-status
 
       # Extra GNOME packages
       gnome3.gnome-tweaks

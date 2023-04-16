@@ -18,6 +18,10 @@
     nps.url = "path:/home/ole/bin/Nix-Package-Search";
     nps.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Entangled
+    entangled.url = "github:entangled/entangled";
+    entangled.inputs.nixpkgs.follows = "nixpkgs";
+
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
 
@@ -37,6 +41,7 @@
       # attribute not shadow possible existing packages.
       third-party = {
         nps = inputs.nps.defaultPackage.${prev.system};
+        entangled = inputs.entangled.defaultPackage.${prev.system};
       };
     };
     overlay-unstable = final: prev: {
