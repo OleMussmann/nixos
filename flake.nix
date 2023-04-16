@@ -6,6 +6,7 @@
   inputs = {
     # Nixpkgs, NixOS's official repo
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Home Manager
     home-manager.url = "github:nix-community/home-manager/release-22.11";
@@ -38,12 +39,15 @@
         nps = inputs.nps.defaultPackage.${prev.system};
       };
     };
+    overlay-unstable = final: prev: {
+      unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
+    };
   in
   {
     nixosConfigurations = (                                 # NixOS configurations
       import ./hosts {                                      # Imports ./hosts/default.nix
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager user nixos-hardware overlays-third-party nur;  # Also inherit home-manager so it does not need to be defined here.
+        inherit inputs nixpkgs home-manager user nixos-hardware overlays-third-party overlay-unstable nur;  # Also inherit home-manager so it does not need to be defined here.
         }
       );
   };
