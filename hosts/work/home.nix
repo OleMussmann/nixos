@@ -14,6 +14,7 @@ in {
       # Applications
       any-nix-shell    # use fish in nix-shell
       appimage-run     # Runs AppImages on NixOS
+      comma            # run programs without installing them
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
       discord          # Comms
