@@ -100,7 +100,10 @@
     shell = pkgs.fish;
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -116,6 +119,7 @@
   environment.systemPackages = with pkgs; [
     #fprintd-tod
     #slack-dark
+    virt-manager
   ];
 
   # Default applications
@@ -130,6 +134,8 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
+    dconf.enable = true;  # for virt manager
+
     mtr.enable = true;
 
     gnupg.agent = {

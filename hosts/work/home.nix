@@ -51,6 +51,7 @@ in {
 
       # Extra GNOME packages
       gnome3.gnome-tweaks
+      gnome.gnome-boxes
 
       # Patched packages
       kgx_patched
