@@ -51,6 +51,26 @@
         "type": "github"
       }
     },
+    "fzf-search": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1681237060,
+        "narHash": "sha256-Y/pddjZr481NzOkmW+ZizQtdJ9Iu3zxVnEFIApdTSeY=",
+        "owner": "suvayu",
+        "repo": "fzf_search",
+        "rev": "be4bf3fb4d37d58439b40384a30b058a058663b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "suvayu",
+        "repo": "fzf_search",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -156,11 +176,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1682397680,
-        "narHash": "sha256-b95VbMGbLHaig1PrIJhtxrKgpu7H7HGZ4OXOG5im0GQ=",
+        "lastModified": 1682430261,
+        "narHash": "sha256-985jshM8/XXabpkjLzYpb+vtChU6rcUBOf2bf1nyAaE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "ea9ab6711cb7f5cb465436eb424b2331ae99e98c",
+        "rev": "11ed9e61848d59880fb7ce6ca85232387bfd8cc0",
         "type": "github"
       },
       "original": {
@@ -172,6 +192,7 @@
     "root": {
       "inputs": {
         "entangled": "entangled",
+        "fzf-search": "fzf-search",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "nixos-hardware": "nixos-hardware",
