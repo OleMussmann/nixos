@@ -5,7 +5,7 @@
         "fenix": "fenix",
         "flakeCompat": "flakeCompat",
         "nixpkgs": [
-          "wipeClean",
+          "wipeclean",
           "dream2nix",
           "nixpkgs"
         ]
@@ -128,7 +128,7 @@
     "fenix": {
       "inputs": {
         "nixpkgs": [
-          "wipeClean",
+          "wipeclean",
           "dream2nix",
           "alejandra",
           "nixpkgs"
@@ -152,7 +152,7 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "wipeClean",
+          "wipeclean",
           "dream2nix",
           "nixpkgs"
         ]
@@ -286,7 +286,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "wipeClean",
+          "wipeclean",
           "nixpkgs"
         ]
       },
@@ -422,11 +422,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1682362401,
-        "narHash": "sha256-/UMUHtF2CyYNl4b60Z2y4wwTTdIWGKhj9H301EDcT9M=",
+        "lastModified": 1682453498,
+        "narHash": "sha256-WoWiAd7KZt5Eh6n+qojcivaVpnXKqBsVgpixpV2L9CE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "884ac294018409e0d1adc0cae185439a44bd6b0b",
+        "rev": "c8018361fa1d1650ee8d4b96294783cf564e8a7f",
         "type": "github"
       },
       "original": {
@@ -471,11 +471,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1682430261,
-        "narHash": "sha256-985jshM8/XXabpkjLzYpb+vtChU6rcUBOf2bf1nyAaE=",
+        "lastModified": 1682493991,
+        "narHash": "sha256-pwhiEVWEvxePvXjW0178xJrroSuukFIgSfTwy5hospM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "11ed9e61848d59880fb7ce6ca85232387bfd8cc0",
+        "rev": "591d9682510750859ebd4e7611c80dd425ebc11f",
         "type": "github"
       },
       "original": {
@@ -504,12 +504,12 @@
     "pre-commit-hooks": {
       "inputs": {
         "flake-utils": [
-          "wipeClean",
+          "wipeclean",
           "dream2nix",
           "flake-utils-pre-commit"
         ],
         "nixpkgs": [
-          "wipeClean",
+          "wipeclean",
           "dream2nix",
           "nixpkgs"
         ]
@@ -556,7 +556,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nps": "nps",
         "nur": "nur",
-        "wipeClean": "wipeClean"
+        "wipeclean": "wipeclean"
       }
     },
     "rust-analyzer-src": {
@@ -591,7 +591,7 @@
         "type": "github"
       }
     },
-    "wipeClean": {
+    "wipeclean": {
       "inputs": {
         "dream2nix": "dream2nix",
         "flake-utils": "flake-utils_3",
