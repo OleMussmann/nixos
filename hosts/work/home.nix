@@ -26,8 +26,10 @@ in {
       inkscape         # Vector graphical editor
       keepassxc        # Password manager
       libreoffice      # Office packages
+      libunity         # Unity integration, to show Discord icon
       nextcloud-client # File sync
       nvd              # nix version diff tool
+      pika-backup      # borg frontend
       slack-dark       # Comms
       todoist-electron # todo app
       transmission     # Torrent client
