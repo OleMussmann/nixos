@@ -251,6 +251,9 @@ in {
       #    onEvent = "fish_command_not_found";
       #  };
       #};
+      functions = {
+        take = "mkdir -p \"$argv\"; and cd \"$argv[-1]\"";
+      };
       shellAbbrs = {
         ll = "ls -l";
       };
@@ -262,6 +265,7 @@ in {
       };
       interactiveShellInit = ''
         set fish_greeting ""
+        fish_vi_key_bindings
         any-nix-shell fish | source
       '';
     };
