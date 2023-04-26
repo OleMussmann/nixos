@@ -21,10 +21,14 @@
   fileSystems."/home".neededForBoot = true;
   fileSystems."/persist".neededForBoot = true;
 
-  networking.hostName = "work"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "work"; # Define your hostname.
+    # Pick only one of the below networking options.
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+    firewall.checkReversePath = "loose";  # enable tailscale exit nodes
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";

@@ -119,6 +119,7 @@ in {
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "caffeine@patapon.info"
+        "tailscale-status@maxgallup.github.com"
       ];
     };
 
