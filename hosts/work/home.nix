@@ -39,6 +39,8 @@ in {
 
       # Applications from third party repos
       third-party.entangled
+      third-party.fzf-search
+      third-party.wipeclean
 
       # GNOME extensions
       gnomeExtensions.appindicator

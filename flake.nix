@@ -22,6 +22,14 @@
     entangled.url = "github:entangled/entangled";
     entangled.inputs.nixpkgs.follows = "nixpkgs";
 
+    # fzf_search
+    fzf-search.url = "github:suvayu/fzf_search";
+    fzf-search.inputs.nixpkgs.follows = "nixpkgs";
+
+    # wipeclean
+    wipeclean.url = "github:OleMussmann/wipeClean";
+    wipeclean.inputs.nixpkgs.follows = "nixpkgs";
+
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
 
@@ -42,6 +50,8 @@
       third-party = {
         nps = inputs.nps.defaultPackage.${prev.system};
         entangled = inputs.entangled.defaultPackage.${prev.system};
+        fzf-search = inputs.fzf-search.packages.${prev.system}.fzf-search;
+        wipeclean = inputs.wipeclean.packages.${prev.system}.wipeclean;
       };
     };
     overlay-unstable = final: prev: {
