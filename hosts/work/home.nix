@@ -228,7 +228,6 @@ in {
         consent-o-matic
         darkreader
         duckduckgo-privacy-essentials
-        floccus
         gsconnect
         keepassxc-browser
         tridactyl
