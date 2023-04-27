@@ -1,7 +1,6 @@
 - delete channels
 - fix 'user' inconsistencies
 - agenix
-- put stateVerison in individual configs
 - deezer
 - configure nvim
 - ZFS snapshots

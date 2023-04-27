@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays-third-party, nur, ... }:
+{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays-third-party, overlay-unstable, nur, ... }:
 #{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays, ... }:
 
 {
@@ -9,6 +9,7 @@
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [
           overlays-third-party
+          overlay-unstable
         ];
       })
       nur.nixosModules.nur
@@ -33,6 +34,7 @@
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [
           overlays-third-party
+          overlay-unstable
         ];
       })
       nixos-hardware.nixosModules.dell-xps-13-9310          # Hardware support

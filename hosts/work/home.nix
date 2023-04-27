@@ -14,6 +14,7 @@ in {
       # Applications
       any-nix-shell    # use fish in nix-shell
       appimage-run     # Runs AppImages on NixOS
+      comma            # run programs without installing them
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
       discord          # Comms
@@ -25,14 +26,23 @@ in {
       inkscape         # Vector graphical editor
       keepassxc        # Password manager
       libreoffice      # Office packages
-      logseq           # knowledge base
+      libunity         # Unity integration, to show Discord icon
       nextcloud-client # File sync
       nvd              # nix version diff tool
+      pika-backup      # borg frontend
       slack-dark       # Comms
       todoist-electron # todo app
       transmission     # Torrent client
       xorg.xkill       # Kill applications
       zoom-us          # comms
+
+      # Applications from unstable channel
+      unstable.logseq           # knowledge base
+
+      # Applications from third party repos
+      third-party.entangled
+      third-party.fzf-search
+      third-party.wipeclean
 
       # GNOME extensions
       gnomeExtensions.appindicator
@@ -40,9 +50,12 @@ in {
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
+      gnomeExtensions.taildrop-send
+      gnomeExtensions.tailscale-status
 
       # Extra GNOME packages
       gnome3.gnome-tweaks
+      gnome.gnome-boxes
 
       # Patched packages
       kgx_patched
@@ -71,6 +84,9 @@ in {
       NIX_PACKAGE_SEARCH_FLIP = "true";
       NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
       NIX_PACKAGE_SEARCH_SHOW_PACKAGE_DESCRIPTION = "false";
+
+      # default editor
+      EDITOR = "nvim";
     };
 
     #file = {
@@ -105,11 +121,11 @@ in {
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "caffeine@patapon.info"
+        "tailscale-status@maxgallup.github.com"
       ];
     };
 
     "org/gnome/Console" = {
-      
       scrollback-lines = "int64 -1";  # Infinite scrollback
       theme = "auto";
     };
@@ -211,7 +227,7 @@ in {
       extensions = with config.nur.repos.rycee.firefox-addons; [
         consent-o-matic
         darkreader
-        floccus
+        duckduckgo-privacy-essentials
         gsconnect
         keepassxc-browser
         tridactyl
@@ -235,6 +251,9 @@ in {
       #    onEvent = "fish_command_not_found";
       #  };
       #};
+      functions = {
+        take = "mkdir -p \"$argv\"; and cd \"$argv[-1]\"";
+      };
       shellAbbrs = {
         ll = "ls -l";
       };
@@ -246,6 +265,7 @@ in {
       };
       interactiveShellInit = ''
         set fish_greeting ""
+        fish_vi_key_bindings
         any-nix-shell fish | source
       '';
     };
@@ -336,9 +356,71 @@ in {
 
     neovim = {
       enable = true;
+      extraConfig = ''
+        colorscheme tokyonight-night
+        set colorcolumn=80
+        set ignorecase
+        set scrolloff=3
+        set smartcase
+
+        " print invisible characters
+        "set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+        set listchars=tab:→\ ,nbsp:␣,trail:•,precedes:«,extends:»
+        set list
+
+        " numbering
+        set number
+        set relativenumber
+
+        " tabs and spaces handling
+        set expandtab
+        set tabstop=2
+        set softtabstop=2
+        set shiftwidth=2
+      '';
+      extraPackages = with pkgs; [
+        gcc
+        ripgrep
+        tree-sitter
+      ];
+      plugins = with pkgs.vimPlugins; [
+        #cmp-treesitter                   # use treesitter for nvim-cmp
+        #diffview-nvim                    # single tabpage interface for diffs
+        #gitsigns-nvim                    # git decorations
+        ##hop-nvim                         # jump anywhere
+        indent-blankline-nvim            # indentation guides
+        #lualine-nvim                     # status line
+        nerdcommenter                    # better commenting
+        #null-ls-nvim                     # make non-lsp plugins hook into lsp
+        #nvim-dap                         # debug adapter protocol, dependency for telescope-dap-nvim
+        #nvim-surround                    # surround selections
+        #nvim-treesitter.withAllGrammars  # syntax highlighting
+        #nvim-treesitter-context          # show code context
+        #nvim-treesitter-pyfold           # smart folding
+        #nvim-treesitter-refactor         # refactoring
+        #nvim-treesitter-textobjects      # syntax aware text-objects
+        #nvim-cmp                         # completion
+        #plenary-nvim                     # lua functions, dependency for telescope
+        #telescope-dap-nvim               # debug adapter protocol integrated in telescope
+        #telescope-lsp-handlers-nvim      # ??
+        #telescope-live-grep-args-nvim    # ??
+        #telescope-frecency-nvim          # file priorization by frequency and recency
+        #telescope-file-browser-nvim      # file browser
+        #telescope-fzf-native-nvim        # fzf for telescope
+        #telescope-nvim                   # fuzzy finder
+        #telescope-symbols-nvim           # pick and insert symbols
+        #telescope-ultisnips-nvim         # smart snippets
+        #toggleterm-nvim                  # quick terminal
+        tokyonight-nvim                  # theme
+        #ultisnips                        # smart snippets, dependency for telescope-ultisnips-nvim
+        vim-nix                          # syntax highlighting for nix
+        #vim-fugitive                     # git integration
+        #vim-repeat                       # repeat also plugin commands
+      ];
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      withPython3 = true;
     };
   };
 }

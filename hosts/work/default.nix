@@ -21,10 +21,14 @@
   fileSystems."/home".neededForBoot = true;
   fileSystems."/persist".neededForBoot = true;
 
-  networking.hostName = "work"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "work"; # Define your hostname.
+    # Pick only one of the below networking options.
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+    firewall.checkReversePath = "loose";  # enable tailscale exit nodes
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -78,6 +82,9 @@
 
     # Enable Gnome browser plugins
     gnome.gnome-browser-connector.enable = true;
+
+    # Mesh VPN
+    tailscale.enable = true;
   };
 
   # Don't allow mutation of users outside of the config.
@@ -90,8 +97,16 @@
   users.users.ole = {
     isNormalUser = true;
     passwordFile = "/persist/passwords/ole";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"  # Enable ‘sudo’ for the user.
+      "docker"
+    ];
     shell = pkgs.fish;
+  };
+
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -108,6 +123,7 @@
   environment.systemPackages = with pkgs; [
     #fprintd-tod
     #slack-dark
+    virt-manager
   ];
 
   # Default applications
@@ -121,10 +137,17 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    dconf.enable = true;  # for virt manager
+
+    mtr.enable = true;
+
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
+    partition-manager.enable = true;
   };
 
   # List services that you want to enable:
