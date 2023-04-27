@@ -54,8 +54,8 @@
     xserver.xkbVariant = "neo";
 
     # Enable VM Guest features
-    services.qemuGuest.enable = true;
-    services.spice-vdagentd.enable = true;
+    qemuGuest.enable = true;
+    spice-vdagentd.enable = true;
 
     # Enable CUPS to print documents.
     printing.enable = true;
