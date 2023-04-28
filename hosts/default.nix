@@ -1,22 +1,23 @@
-{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays-third-party, overlay-unstable, nur, ... }:
+{ inputs, nixpkgs, home-manager, nixos-hardware, overlays, nur, ... }:
 #{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays, ... }:
 
 {
   nixos-vm = nixpkgs.lib.nixosSystem {                      # VM profile
+    user = "ole";
     system = "x86_64-linux";                                # System architecture
-    specialArgs = { inherit inputs user; };                 # Pass flake variable
+    specialArgs = { inherit inputs; };                 # Pass flake variable
     modules = [                                             # Modules that are used
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [
-          overlays-third-party
-          overlay-unstable
+          overlays
         ];
       })
       nur.nixosModules.nur
       ./nixos-vm
       ./shared.nix
 
-      home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
+      home-manager.nixosModules.home-manager rec {              # Home-Manager module that is used.
+        inherit user;
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit user nur; };  # Pass flake variable
@@ -28,13 +29,13 @@
   };
 
   work = nixpkgs.lib.nixosSystem {                          # work profile
+    user = "ole2";
     system = "x86_64-linux";                                # System architecture
     specialArgs = { inherit inputs user; };                 # Pass flake variable
     modules = [                                             # Modules that are used
       ({ config, pkgs, ... }: {
         nixpkgs.overlays = [
-          overlays-third-party
-          overlay-unstable
+          overlays
         ];
       })
       nixos-hardware.nixosModules.dell-xps-13-9310          # Hardware support

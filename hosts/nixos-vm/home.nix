@@ -41,10 +41,10 @@ in {
       # Applications from unstable channel
       unstable.logseq           # knowledge base
 
-      # Applications from third party repos
-      third-party.entangled
-      third-party.fzf-search
-      third-party.wipeclean
+      # Applications from out-of-tree repos
+      out-of-tree.entangled
+      out-of-tree.fzf-search
+      out-of-tree.wipeclean
 
       # GNOME extensions
       gnomeExtensions.appindicator

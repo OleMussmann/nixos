@@ -6,7 +6,9 @@
 
 {
   imports =
-    [(import ./hardware-configuration.nix)];            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
+    [
+      (import ./hardware-configuration.nix)            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
+    ];
 
   # Use systemd boot (EFI only)
   boot.loader.systemd-boot.enable = true;

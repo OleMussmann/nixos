@@ -43,26 +43,21 @@
   # Output config, or config for NixOS system
   outputs = { self, nixpkgs, home-manager, nixos-hardware, nur, ... }@inputs:
   let
-    user = "ole";
-    overlays-third-party = final: prev: {
-      # Let's give third-party packages their own 'third-party'
-      # attribute not shadow possible existing packages.
-      third-party = {
+    overlays = final: prev: {
+      unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
+      out-of-tree = {
         nps = inputs.nps.defaultPackage.${prev.system};
         entangled = inputs.entangled.defaultPackage.${prev.system};
         fzf-search = inputs.fzf-search.packages.${prev.system}.fzf-search;
         wipeclean = inputs.wipeclean.packages.${prev.system}.wipeclean;
       };
     };
-    overlay-unstable = final: prev: {
-      unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
-    };
   in
   {
     nixosConfigurations = (                                 # NixOS configurations
       import ./hosts {                                      # Imports ./hosts/default.nix
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager user nixos-hardware overlays-third-party overlay-unstable nur;  # Also inherit home-manager so it does not need to be defined here.
+        inherit inputs nixpkgs home-manager nixos-hardware overlays nur;  # Also inherit home-manager so it does not need to be defined here.
         }
       );
   };

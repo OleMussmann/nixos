@@ -25,8 +25,8 @@
     wl-clipboard     # Wayland clipbord utilities
     wget             # network downloader
 
-    # third-party-packages
-    third-party.nps  # nix package search
+    # out-of-tree packages
+    out-of-tree.nps  # nix package search
   ];
 
   # machine-id is used by systemd for the journal, if you don't
