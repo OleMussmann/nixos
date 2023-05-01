@@ -1,4 +1,4 @@
-{ pkgs, lib, user, ... }:
+{ config, pkgs, lib, user, nur, ... }:
 
 let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: { patches = [ ../../patches/kgx/atelierlakeside.alpha_0.97.hybrid.alpha_0.97.patch ]; } );
 #let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: {
@@ -10,12 +10,6 @@ let kgx_patched = pkgs.kgx.overrideAttrs( oldAttrs: { patches = [ ../../patches/
 #  ];
 #});
 in {
-  #imports =
-  #  [
-  #    #../../modules/desktop/bspwm/home.nix    # Window Manager
-  #    ../../modules/desktop/hyprland/home.nix  # Window Manager
-  #  ];
-
   fonts.fontconfig.enable = true;
 
   home = {                                # Specific packages for desktop
@@ -28,24 +22,33 @@ in {
       # Applications
       any-nix-shell    # use fish in nix-shell
       appimage-run     # Runs AppImages on NixOS
+      comma            # run programs without installing them
       chromium         # Browser
       dconf2nix        # turn GNOME dconf settings to nix strings
-      discord          # Comms
       ffmpeg           # Video support
-      firefox          # Browser
+      #firefox          # Browser
       gimp             # Graphical editor
-      handbrake        # Encoder
       inkscape         # Vector graphical editor
       jq               # json parser
       keepassxc        # Password manager
-      libreoffice      # Office packages
-      logseq           # knowledge base
       nextcloud-client # File sync
+      nvd              # nix version diff tool
+      pika-backup      # borg frontend
       transmission     # Torrent client
       xorg.xkill       # Kill applications
+      zoom-us          # comms
+
+      # Applications from unstable channel
+      unstable.logseq           # knowledge base
+
+      # Applications from third party repos
+      third-party.entangled
+      third-party.fzf-search
+      third-party.wipeclean
 
       # GNOME extensions
       gnomeExtensions.appindicator
+      gnomeExtensions.caffeine
       gnomeExtensions.dash-to-dock
       gnomeExtensions.gsconnect
       gnomeExtensions.pop-shell
@@ -80,6 +83,9 @@ in {
       NIX_PACKAGE_SEARCH_FLIP = "true";
       NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
       NIX_PACKAGE_SEARCH_SHOW_PACKAGE_DESCRIPTION = "false";
+
+      # default editor
+      EDITOR = "nvim";
     };
   };
 
@@ -90,29 +96,33 @@ in {
         "firefox.desktop"
         "chromium-browser.desktop"
         "org.gnome.Console.desktop"
-	"org.keepassxc.KeePassXC.desktop"
+        "org.keepassxc.KeePassXC.desktop"
         "org.gnome.Nautilus.desktop"
+        "logseq.desktop"
+        "slack.desktop"
+        "element-desktop.desktop"
       ];
       enabled-extensions = [
         "dash-to-dock@micxgx.gmail.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "caffeine@patapon.info"
       ];
     };
 
     "org/gnome/Console" = {
-      
       scrollback-lines = "int64 -1";  # Infinite scrollback
       theme = "auto";
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = true;
+      custom-theme-shrink = true;
+      disable-overview-on-startup = true;
       dock-position = "LEFT";
       extend-height = true;
       show-apps-at-top = true;
-      custom-theme-shrink = true;
-      apply-custom-theme = true;
-      disable-overview-on-startup = true;
+      show-show-apps-button = false;
     };
 
     "org/gnome/desktop/calendar" = {
@@ -129,6 +139,7 @@ in {
       titlebar-font = "Ubuntu Nerd Font Bold 11";
       action-right-click-titlebar = "menu";
       action-middle-click-titlebar = "minimize";
+      button-layout = "appmenu:minimize,maximize,close";
     };
     "org/gnome/desktop/peripherals/mouse" = {
       natural-scroll = false;
@@ -159,6 +170,11 @@ in {
       command = "kgx";
       name = "Launch Console";
     };
+
+    # Fractional scaling
+    "org/gnome/mutter" = {
+      experimental-features = [ "scale-monitor-framebuffer" ];
+    };
   };
 
   programs = {
@@ -166,9 +182,58 @@ in {
     command-not-found.enable = false;  # broken for flakes-only builds without channels
     nix-index.enable = true;           # use nix-index instead of command-not-found
 
-    direnv = {
+    direnv = {                         # custom environments per directory
       enable = true;
       nix-direnv.enable = true;
+    };
+
+    firefox = {
+      enable = true;
+      #enableGnomeExtensions = true;
+      profiles.default = {
+        id = 0;
+        name = "Default";
+        isDefault = true;
+        search.force = true;  # Keep firefox from overwriting search.json.mozlz4
+        search.default = "DuckDuckGo";
+        search.engines = {
+          "Nix Packages" = {
+            urls = [{
+              template = "https://search.nixos.org/packages";
+              params = [
+                { name = "type"; value = "packages"; }
+                { name = "query"; value = "{searchTerms}"; }
+              ];
+            }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@np" ];
+          };
+        };
+        settings = {
+          "browser.startup.page" = 3;  # Restore previous session
+          "browser.toolbars.bookmarks.visibility" = "never";
+          "browser.newtabpage.activity-stream.topSitesRows" = 2;
+          "signon.rememberSignons" = false;
+          "browser.newtabpage.pinned" = "[{\"url\":\"https://www.heise.de/\",\"label\":\"heise\"},{\"url\":\"https://www.golem.de/\",\"label\":\"golem\"},{\"url\":\"https://tweakers.net/\",\"label\":\"tweakers\"},{\"url\":\"https://arstechnica.com/\"},{\"url\":\"https://www.phoronix.com/\",\"label\":\"phoronix\"},{\"url\":\"https://www.theverge.com/\"},{\"url\":\"https://www.engadget.com\",\"label\":\"engadget\"},{\"url\":\"https://www.trustedreviews.com/\",\"label\":\"trustedreviews\"},{\"url\":\"https://www.theregister.com/\",\"label\":\"theregister\"},{\"url\":\"https://search.nixos.org/\",\"label\":\"search.nixos\"},{\"url\":\"https://nix-community.github.io/home-manager/options.html\",\"label\":\"nix-community\"}]";
+        };
+      };
+      extensions = with config.nur.repos.rycee.firefox-addons; [
+        consent-o-matic
+        darkreader
+        duckduckgo-privacy-essentials
+        gsconnect
+        keepassxc-browser
+        tridactyl
+        ublock-origin
+        vimium
+      ];
+      package = pkgs.firefox.override {
+        # See nixpkgs' firefox/wrapper.nix to check which options you can use
+        cfg = {
+          # Gnome shell native connector
+          enableGnomeExtensions = true;
+        };
+      };
     };
 
     fish = {
@@ -192,7 +257,7 @@ in {
       '';
     };
 
-    fzf ={
+    fzf = {
       enable = true;
       tmux.enableShellIntegration = true;
     };
@@ -288,9 +353,71 @@ in {
 
     neovim = {
       enable = true;
+      extraConfig = ''
+        colorscheme tokyonight-night
+        set colorcolumn=80
+        set ignorecase
+        set scrolloff=3
+        set smartcase
+
+        " print invisible characters
+        "set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+        set listchars=tab:→\ ,nbsp:␣,trail:•,precedes:«,extends:»
+        set list
+
+        " numbering
+        set number
+        set relativenumber
+
+        " tabs and spaces handling
+        set expandtab
+        set tabstop=2
+        set softtabstop=2
+        set shiftwidth=2
+      '';
+      extraPackages = with pkgs; [
+        gcc
+        ripgrep
+        tree-sitter
+      ];
+      plugins = with pkgs.vimPlugins; [
+        #cmp-treesitter                   # use treesitter for nvim-cmp
+        #diffview-nvim                    # single tabpage interface for diffs
+        #gitsigns-nvim                    # git decorations
+        ##hop-nvim                         # jump anywhere
+        indent-blankline-nvim            # indentation guides
+        #lualine-nvim                     # status line
+        nerdcommenter                    # better commenting
+        #null-ls-nvim                     # make non-lsp plugins hook into lsp
+        #nvim-dap                         # debug adapter protocol, dependency for telescope-dap-nvim
+        #nvim-surround                    # surround selections
+        #nvim-treesitter.withAllGrammars  # syntax highlighting
+        #nvim-treesitter-context          # show code context
+        #nvim-treesitter-pyfold           # smart folding
+        #nvim-treesitter-refactor         # refactoring
+        #nvim-treesitter-textobjects      # syntax aware text-objects
+        #nvim-cmp                         # completion
+        #plenary-nvim                     # lua functions, dependency for telescope
+        #telescope-dap-nvim               # debug adapter protocol integrated in telescope
+        #telescope-lsp-handlers-nvim      # ??
+        #telescope-live-grep-args-nvim    # ??
+        #telescope-frecency-nvim          # file priorization by frequency and recency
+        #telescope-file-browser-nvim      # file browser
+        #telescope-fzf-native-nvim        # fzf for telescope
+        #telescope-nvim                   # fuzzy finder
+        #telescope-symbols-nvim           # pick and insert symbols
+        #telescope-ultisnips-nvim         # smart snippets
+        #toggleterm-nvim                  # quick terminal
+        tokyonight-nvim                  # theme
+        #ultisnips                        # smart snippets, dependency for telescope-ultisnips-nvim
+        vim-nix                          # syntax highlighting for nix
+        #vim-fugitive                     # git integration
+        #vim-repeat                       # repeat also plugin commands
+      ];
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      withPython3 = true;
     };
   };
 }

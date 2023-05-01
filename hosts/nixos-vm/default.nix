@@ -6,8 +6,7 @@
 
 {
   imports =
-    [(import ./hardware-configuration.nix)];# ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
-    #[(import ../../modules/games.nix)];          # Gaming
+    [(import ./hardware-configuration.nix)];            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
 
   # Use systemd boot (EFI only)
   boot.loader.systemd-boot.enable = true;
@@ -37,39 +36,40 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-  #   font = "Lat2-Terminus16";
     keyMap = "neo";
-  #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services = {
+    # enable gnome-settings-daemon udev rules
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    # Enable the X11 windowing system.
+    xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+    # Enable the GNOME Desktop Environment.
+    xserver.displayManager.gdm.enable = true;
+    xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.layout = "de";
-  services.xserver.xkbVariant = "neo";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
+    # Configure keymap in X11
+    xserver.layout = "de";
+    xserver.xkbVariant = "neo";
 
-  # Enable VM Guest features
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
+    # Enable VM Guest features
+    qemuGuest.enable = true;
+    spice-vdagentd.enable = true;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+    # Enable CUPS to print documents.
+    printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+    # Enable touchpad support (enabled default in most desktopManager).
+    xserver.libinput.enable = true;
+
+    # Pipewire
+    pipewire.enable = true;
+
+    # Enable Gnome browser plugins
+    gnome.gnome-browser-connector.enable = true;
+  };
 
   # Don't allow mutation of users outside of the config.
   users.mutableUsers = false;
@@ -81,8 +81,15 @@
   users.users.ole = {
     isNormalUser = true;
     passwordFile = "/persist/passwords/ole";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"  # Enable ‘sudo’ for the user.
+      "docker"
+    ];
     shell = pkgs.fish;
+  };
+
+  virtualisation = {
+    docker.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
