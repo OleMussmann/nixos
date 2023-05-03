@@ -73,6 +73,11 @@
         show-show-apps-button = false;
       };
 
+      "org/gnome/desktop/peripherals/touchpad" = {
+        tap-to-click = true;
+        speed = 0.45;
+      };
+
       "org/gnome/desktop/calendar" = {
         show-weekdate = true;
       };

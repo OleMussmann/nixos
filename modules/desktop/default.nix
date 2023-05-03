@@ -7,8 +7,10 @@
         chromium         # Browser
         ffmpeg           # Video support
         gimp             # Graphical editor
+        handbrake        # Encoder
         inkscape         # Vector graphical editor
         keepassxc        # Password manager
+        libreoffice      # Office packages
         nextcloud-client # File sync
         pika-backup      # borg frontend
         transmission     # Torrent client
@@ -21,10 +23,16 @@
         out-of-tree.entangled
         out-of-tree.fzf-search
         out-of-tree.wipeclean
-      ];
+      ]
+      ++ (
+        # Install dconf2nix if GNOME is used
+        if config.services.xserver.desktopManager.gnome.enable then [
+          dconf2nix
+        ]
+        else []
+      );
     };
   };
 }
-
 
 

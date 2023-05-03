@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, home-manager, nixos-hardware, overlays, nur, ... }:
+{ inputs, nixpkgs, home-manager, overlays, nur, ... }:
 {
   nixos-vm =
   let
@@ -24,8 +24,8 @@
       ../../modules/git
       ../../modules/gnome
       ../../modules/kgx
-      ../../modules/neovim
       ../../modules/neo_layout
+      ../../modules/neovim
       ../../modules/nix
       ../../modules/starship
       ../../modules/vm_guest

@@ -55,14 +55,8 @@
   in
   {
     nixosConfigurations = (
+      import ./hosts/work { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }
       import ./hosts/nixos-vm { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }
     );
-    #nixosConfigurations = (                                 # NixOS configurations
-    #  import ./hosts {                                      # Imports ./hosts/default.nix
-    #    inherit (nixpkgs) lib;
-    #    #inherit inputs nixpkgs home-manager user nixos-hardware overlays nur;  # Also inherit home-manager so it does not need to be defined here.
-    #    inherit inputs nixpkgs home-manager nixos-hardware overlays nur;  # Also inherit home-manager so it does not need to be defined here.
-    #    }
-    #  );
   };
 }

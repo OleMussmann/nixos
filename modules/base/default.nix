@@ -45,6 +45,7 @@
     broot            # better `tree`
     btop             # system monitor
     comma            # run programs without installing them
+    cookiecutter     # coding templates
     exa              # better `ls`
     fd               # better `find`
     htop             # system monitor
@@ -75,9 +76,10 @@
     mtr.enable = true;
   };
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
+  services = {
+    openssh.enable = true;
+    fwupd.enable = true;
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
