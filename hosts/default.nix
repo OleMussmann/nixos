@@ -1,18 +1,15 @@
 { inputs, nixpkgs, home-manager, nixos-hardware, overlays, nur, ... }:
-#{ inputs, nixpkgs, home-manager, user, nixos-hardware, overlays, ... }:
 {
-  nixos-vm = #nixpkgs.lib.nixosSystem
+  nixos-vm =
   let
     user = "ole";
-    system = "x86_64-linux";                     # System architecture
     hostname = "nixos-vm";
+    system = "x86_64-linux";
     timezone = "Europe/Amsterdam";
     defaultlocale = "en_US.UTF-8";
   in
-  nixpkgs.lib.nixosSystem {                      # VM profile
+  nixpkgs.lib.nixosSystem {
     inherit system;
-    #networking.hostName = "nixos-vm";            # Define your hostname.
-    #time.timeZone = "Europe/Amsterdam";
     specialArgs = { inherit inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
     modules = [                                             # Modules that are used
       #./nixos-vm

@@ -43,7 +43,6 @@
   # Output config, or config for NixOS system
   outputs = { self, nixpkgs, home-manager, nixos-hardware, nur, ... }@inputs:
   let
-    #user = "ole";
     overlays = final: prev: {
       unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
       out-of-tree = {
@@ -55,12 +54,15 @@
     };
   in
   {
-    nixosConfigurations = (                                 # NixOS configurations
-      import ./hosts {                                      # Imports ./hosts/default.nix
-        inherit (nixpkgs) lib;
-        #inherit inputs nixpkgs home-manager user nixos-hardware overlays nur;  # Also inherit home-manager so it does not need to be defined here.
-        inherit inputs nixpkgs home-manager nixos-hardware overlays nur;  # Also inherit home-manager so it does not need to be defined here.
-        }
-      );
+    nixosConfigurations = (
+      import ./hosts/nixos-vm { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }
+    );
+    #nixosConfigurations = (                                 # NixOS configurations
+    #  import ./hosts {                                      # Imports ./hosts/default.nix
+    #    inherit (nixpkgs) lib;
+    #    #inherit inputs nixpkgs home-manager user nixos-hardware overlays nur;  # Also inherit home-manager so it does not need to be defined here.
+    #    inherit inputs nixpkgs home-manager nixos-hardware overlays nur;  # Also inherit home-manager so it does not need to be defined here.
+    #    }
+    #  );
   };
 }
