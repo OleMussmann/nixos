@@ -30,7 +30,6 @@ in {
       libunity         # Unity integration, to show Discord icon
       nextcloud-client # File sync
       nvd              # nix version diff tool
-      pika-backup      # borg frontend
       slack-dark       # Comms
       todoist-electron # todo app
       transmission     # Torrent client
@@ -39,6 +38,7 @@ in {
 
       # Applications from unstable channel
       unstable.logseq           # knowledge base
+      unstable.pika-backup      # borg frontend
 
       # Applications from third party repos
       third-party.entangled
