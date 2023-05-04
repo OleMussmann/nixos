@@ -54,9 +54,15 @@
     };
   in
   {
-    nixosConfigurations = (
-      import ./hosts/work { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }
-      import ./hosts/nixos-vm { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }
-    );
+    #nixosConfigurations = { ... }: {
+    #  import ./hosts/work { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; };
+    #  import ./hosts/nixos-vm { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; };
+    #};
+    nixosConfigurations = {
+      modules = [
+        ./hosts/work
+        ./hosts/nixos-vm
+      ];
+    };
   };
 }

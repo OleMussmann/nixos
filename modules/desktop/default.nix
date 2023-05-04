@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, config, user, ... }:
 {
   home-manager.users.${user} = {
     home = {
@@ -32,6 +32,9 @@
         else []
       );
     };
+  };
+  programs = {
+    partition-manager.enable = true;
   };
 }
 

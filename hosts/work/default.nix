@@ -12,7 +12,7 @@
     inherit system;
     specialArgs = { inherit inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
     modules = [                                             # Modules that are used
-      nixos-harware-nixosModules.dell-xps-13-9310
+      nixos-hardware.nixosModules.dell-xps-13-9310
       ./hardware-configuration.nix
       ../../modules/base
       ../../modules/desktop

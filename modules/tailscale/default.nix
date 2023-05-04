@@ -1,4 +1,4 @@
-{ pkgs, user, home-manager, ... }:
+{ pkgs, config, user, home-manager, ... }:
 {
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";  # enable tailscale exit nodes
@@ -10,9 +10,11 @@
       gnomeExtensions.tailscale-status
     ];
     dconf.settings = {
-      "org/gnome/shell/enabled-extensions" = [
-        "tailscale-status@maxgallup.github.com"
-      ];
+      "org/gnome/shell" = {
+        enabled-extensions = [
+          "tailscale-status@maxgallup.github.com"
+        ];
+      };
     };
   };
 }
