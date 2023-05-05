@@ -17,7 +17,10 @@
         xorg.xkill       # Kill applications
 
         # Applications from unstable channel
-        unstable.logseq           # knowledge base
+        #unstable.logseq           # knowledge base
+
+        # Rollbacks
+        (callPackage ../../rollbacks/logseq-0.9.0 {})           # knowledge base
 
         # Applications from out-of-tree repos
         out-of-tree.entangled
