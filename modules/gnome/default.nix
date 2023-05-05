@@ -95,7 +95,7 @@
         button-layout = "appmenu:minimize,maximize,close";
       };
       "org/gnome/desktop/peripherals/mouse" = {
-        natural-scroll = false;
+        natural-scroll = true;
       };
       "org/gnome/mutter" = {
         edge-tiling = true;
