@@ -5,7 +5,7 @@
 # Set up 15% of overall disk size as reservation, to prevent a too full zpool.
 
 # check if run as root
-if [ "EUID" -ne 0 ]
+if [[ $EUID > 0 ]]
     then echo "Please run as root"
     exit
 fi
