@@ -13,6 +13,7 @@
         libreoffice      # Office packages
         nextcloud-client # File sync
         pika-backup      # borg frontend
+        todoist-electron # Todo app
         transmission     # Torrent client
         xorg.xkill       # Kill applications
 
