@@ -65,7 +65,7 @@ echo "# formatting disks #"
 echo "####################"
 echo
 
-for i in ${DISK}; do
+for i in ${DISKS}; do
    partition_disk "${i}"
 done
 
@@ -75,7 +75,7 @@ echo "# setting up swap #"
 echo "###################"
 echo
 
-for i in ${DISK}; do
+for i in ${DISKS}; do
    cryptsetup open --type plain --key-file /dev/random "${i}"-part4 "${i##*/}"-part4
    mkswap /dev/mapper/"${i##*/}"-part4
    swapon /dev/mapper/"${i##*/}"-part4
@@ -103,7 +103,7 @@ zpool create \
     -R "${MNT}" \
     bpool \
   mirror \
-    $(for i in ${DISK}; do
+    $(for i in ${DISKS}; do
        printf '%s ' "${i}-part2";
       done)
 
@@ -128,7 +128,7 @@ zpool create \
     -O mountpoint=/ \
     rpool \
     raidz1 \
-    $(for i in ${DISK}; do
+    $(for i in ${DISKS}; do
       printf '%s ' "${i}-part3";
       done)
 
@@ -193,7 +193,7 @@ echo "# format and mount ESP #"
 echo "########################"
 echo
 
-for i in ${DISK}; do
+for i in ${DISKS}; do
  mkfs.vfat -n EFI "${i}"-part1
  mkdir -p "${MNT}"/boot/efis/"${i##*/}"-part1
  mount -t vfat -o iocharset=iso8859-1 "${i}"-part1 "${MNT}"/boot/efis/"${i##*/}"-part1
@@ -215,7 +215,7 @@ echo "# customize hardware #"
 echo "######################"
 echo
 
-for i in ${DISK}; do
+for i in ${DISKS}; do
   sed -i \
   "s|/dev/disk/by-id/|${i%/*}/|" \
   "${MNT}"/etc/nixos/hosts/exampleHost/default.nix
@@ -223,7 +223,7 @@ for i in ${DISK}; do
 done
 
 diskNames=""
-for i in ${DISK}; do
+for i in ${DISKS}; do
   diskNames="${diskNames} \"${i##*/}\""
 done
 
