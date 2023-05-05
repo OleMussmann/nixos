@@ -1,7 +1,14 @@
+#!/usr/bin/env bash
 # Modified from https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS.html under CC BY-SA 3.0
 #
 # Set up 2 disks with ZFS in RAIDZ1, root on tmpfs, and 2Gb EFI, 4Gb /boot and 4Gb swap per disk.
 # Set up 15% of overall disk size as reservation, to prevent a too full zpool.
+
+# check if run as root
+if [ "EUID" -ne 0 ]
+    then echo "Please run as root"
+    exit
+fi
 
 # Find disks with `find /dev/disk/by-id`
 DISKS='/dev/disk/by-id/ata-TOSHIBA_MG08ACA16TE_2140A0MCFVGG /dev/disk/by-id/ata-TOSHIBA_MG08ACA16TE_2140A1CBFVGG'
@@ -17,9 +24,9 @@ SWAPSIZE=4
 RESERVE=1
 
 echo
-echo ####################################
-echo # create (temporary) root password #
-echo ####################################
+echo "####################################"
+echo "# create (temporary) root password #"
+echo "####################################"
 echo
 
 rootPwd=$(mkpasswd -m SHA-512)
@@ -53,9 +60,9 @@ partition_disk () {
 }
 
 echo
-echo ####################
-echo # formatting disks #
-echo ####################
+echo "####################"
+echo "# formatting disks #"
+echo "####################"
 echo
 
 for i in ${DISK}; do
@@ -63,9 +70,9 @@ for i in ${DISK}; do
 done
 
 echo
-echo ###################
-echo # setting up swap #
-echo ###################
+echo "###################"
+echo "# setting up swap #"
+echo "###################"
 echo
 
 for i in ${DISK}; do
@@ -75,9 +82,9 @@ for i in ${DISK}; do
 done
 
 echo
-echo ####################
-echo # create boot pool #
-echo ####################
+echo "####################"
+echo "# create boot pool #"
+echo "####################"
 echo
 
 # shellcheck disable=SC2046
@@ -101,9 +108,9 @@ zpool create \
       done)
 
 echo
-echo ####################
-echo # create root pool #
-echo ####################
+echo "####################"
+echo "# create root pool #"
+echo "####################"
 echo
 
 # shellcheck disable=SC2046
@@ -126,9 +133,9 @@ zpool create \
       done)
 
 echo
-echo ###########################
-echo # create system container #
-echo ###########################
+echo "###########################"
+echo "# create system container #"
+echo "###########################"
 echo
 
 zfs create \
@@ -137,9 +144,9 @@ zfs create \
   rpool/nixos
 
 echo
-echo ##########################
-echo # create system datasets #
-echo ##########################
+echo "##########################"
+echo "# create system datasets #"
+echo "##########################"
 echo
 
 # root
@@ -181,9 +188,9 @@ mkdir "${MNT}"/boot
 mount -t zfs bpool/nixos/root "${MNT}"/boot
 
 echo
-echo ########################
-echo # format and mount ESP #
-echo ########################
+echo "########################"
+echo "# format and mount ESP #"
+echo "########################"
 echo
 
 for i in ${DISK}; do
@@ -193,9 +200,9 @@ for i in ${DISK}; do
 done
 
 echo
-echo ###############################
-echo # clone flake template config #
-echo ###############################
+echo "###############################"
+echo "# clone flake template config #"
+echo "###############################"
 echo
 
 mkdir -p "${MNT}"/etc
@@ -203,9 +210,9 @@ git clone --depth 1 --branch openzfs-guide \
   https://github.com/ne9z/dotfiles-flake.git "${MNT}"/etc/nixos
 
 echo
-echo ######################
-echo # customize hardware #
-echo ######################
+echo "######################"
+echo "# customize hardware #"
+echo "######################"
 echo
 
 for i in ${DISK}; do
@@ -242,9 +249,9 @@ sed -i "s|\"kernelModules_placeholder\"|${kernelModules}|g" \
   "${MNT}"/etc/nixos/hosts/exampleHost/default.nix
 
 echo
-echo #################################
-echo # set (temporary) root password #
-echo #################################
+echo "#################################"
+echo "# set (temporary) root password #"
+echo "#################################"
 echo
 
 sed -i \
@@ -252,25 +259,25 @@ sed -i \
 "${MNT}"/etc/nixos/configuration.nix
 
 echo
-echo #########################
-echo # enable networkmanager #
-echo #########################
+echo "#########################"
+echo "# enable networkmanager #"
+echo "#########################"
 echo
 
 sed -i -e "/networkmanager/ s|false|true|" "${MNT}"/etc/nixos/configuration.nix
 
 echo
-echo #####################
-echo # update flake.lock #
-echo #####################
+echo "#####################"
+echo "# update flake.lock #"
+echo "#####################"
 echo
 
 nix flake update
 
 echo
-echo ##################
-echo # install system #
-echo ##################
+echo "##################"
+echo "# install system #"
+echo "##################"
 echo
 
 nixos-install \
@@ -279,18 +286,18 @@ nixos-install \
 --flake "git+file://${MNT}/etc/nixos#exampleHost"
 
 echo
-echo #######################
-echo # unmount filesystems #
-echo #######################
+echo "#######################"
+echo "# unmount filesystems #"
+echo "#######################"
 echo
 
 umount -Rl "${MNT}"
 zpool export -a
 
 echo
-echo ##########
-echo # reboot #
-echo ##########
+echo "##########"
+echo "# reboot #"
+echo "##########"
 echo
 
 reboot
