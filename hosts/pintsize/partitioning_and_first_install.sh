@@ -23,12 +23,12 @@ SWAPSIZE=4
 # in GB
 RESERVE=1
 
-echo
-echo "####################################"
-echo "# create (temporary) root password #"
-echo "####################################"
-echo
-
+#echo
+#echo "####################################"
+#echo "# create (temporary) root password #"
+#echo "####################################"
+#echo
+#
 #rootPwd=$(mkpasswd -m SHA-512)
 
 # Enable Nix Flakes functionality.
@@ -189,7 +189,7 @@ mount -t zfs rpool/nixos/var/log "${MNT}"/var/log
 #zfs create -o mountpoint=none bpool/nixos
 #zfs create -o mountpoint=legacy bpool/nixos/root
 mkdir "${MNT}"/boot
-mount -t ext4 "${DISKS[0]}-part2" "${MNT}"/boot
+mount -t ext4 "$(echo $DISKS | awk '{print $1}')-part2" "${MNT}"/boot
 
 echo
 echo "########################"
