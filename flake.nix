@@ -57,6 +57,7 @@
     nixosConfigurations = {
       work = (import ./hosts/work { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }).work;
       nixos-vm = (import ./hosts/nixos-vm { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }).nixos-vm;
+      pintsize = (import ./hosts/pintsize { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }).pintsize;
     };
   };
 }
