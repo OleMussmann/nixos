@@ -100,4 +100,7 @@
     passwordFile = "/persist/passwords/${user}";
     extraGroups = [ "wheel" ];  # Enable ‘sudo’ for the user.
   };
+
+  # Allow user to nixos-rebuild
+  nix.settings.trusted-users = [ "${user}" ];
 }
