@@ -46,14 +46,13 @@ partition_disk () {
 
  parted --script --align=optimal "${disk}" -- \
  mklabel gpt \
- mkpart EFI 2MiB 1GiB \
- mkpart boot 1GiB 5GiB \
+ mkpart boot 2MiB 5GiB \
  mkpart rpool 5GiB -$((SWAPSIZE + RESERVE))GiB \
  mkpart swap -$((SWAPSIZE + RESERVE))GiB -"${RESERVE}"GiB \
  mkpart BIOS 1MiB 2MiB \
  set 1 esp on \
- set 5 bios_grub on \
- set 5 legacy_boot on
+ set 4 bios_grub on \
+ set 4 legacy_boot on
 
  partprobe "${disk}"
  udevadm settle
@@ -76,9 +75,9 @@ echo "###################"
 echo
 
 for i in ${DISKS}; do
-   cryptsetup open --type plain --key-file /dev/random "${i}"-part4 "${i##*/}"-part4
-   mkswap /dev/mapper/"${i##*/}"-part4
-   swapon /dev/mapper/"${i##*/}"-part4
+   cryptsetup open --type plain --key-file /dev/random "${i}"-part4 "${i##*/}"-part3
+   mkswap /dev/mapper/"${i##*/}"-part3
+   swapon /dev/mapper/"${i##*/}"-part3
 done
 
 echo
@@ -88,7 +87,7 @@ echo "#########################"
 echo
 
 for i in ${DISKS}; do
-  mkfs.ext4 "${i}-part2"
+  mkfs.vfat "${i}-part1"
 done
 
 ## shellcheck disable=SC2046
@@ -133,7 +132,7 @@ zpool create \
     rpool \
     raidz1 \
     $(for i in ${DISKS}; do
-      printf '%s ' "${i}-part3";
+      printf '%s ' "${i}-part2";
       done)
 
 echo
@@ -189,19 +188,19 @@ mount -t zfs rpool/nixos/var/log "${MNT}"/var/log
 #zfs create -o mountpoint=none bpool/nixos
 #zfs create -o mountpoint=legacy bpool/nixos/root
 mkdir "${MNT}"/boot
-mount -t ext4 "$(echo $DISKS | awk '{print $1}')-part2" "${MNT}"/boot
+mount -t vfat "$(echo $DISKS | awk '{print $1}')-part1" "${MNT}"/boot
 
-echo
-echo "########################"
-echo "# format and mount ESP #"
-echo "########################"
-echo
-
-for i in ${DISKS}; do
- mkfs.vfat -n EFI "${i}"-part1
- mkdir -p "${MNT}"/boot/efis/"${i##*/}"-part1
- mount -t vfat -o iocharset=iso8859-1 "${i}"-part1 "${MNT}"/boot/efis/"${i##*/}"-part1
-done
+#echo
+#echo "########################"
+#echo "# format and mount ESP #"
+#echo "########################"
+#echo
+#
+#for i in ${DISKS}; do
+# mkfs.vfat -n EFI "${i}"-part1
+# mkdir -p "${MNT}"/boot/efis/"${i##*/}"-part1
+# mount -t vfat -o iocharset=iso8859-1 "${i}"-part1 "${MNT}"/boot/efis/"${i##*/}"-part1
+#done
 
 #echo
 #echo "###############################"
