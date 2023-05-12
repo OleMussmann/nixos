@@ -75,7 +75,7 @@ echo "###################"
 echo
 
 for i in ${DISKS}; do
-   cryptsetup open --type plain --key-file /dev/random "${i}"-part4 "${i##*/}"-part3
+   cryptsetup open --type plain --key-file /dev/random "${i}"-part3 "${i##*/}"-part3
    mkswap /dev/mapper/"${i##*/}"-part3
    swapon /dev/mapper/"${i##*/}"-part3
 done
