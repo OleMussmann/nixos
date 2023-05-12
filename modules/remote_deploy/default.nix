@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
-  users.users.groups.deploy = { };
-  users.users.extraUsers.deploy = {
+  users.groups.deploy = { };
+  users.extraUsers.deploy = {
     isSystemUser = true;
     group = "deploy";
     shell = pkgs.bash;
