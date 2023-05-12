@@ -15,23 +15,23 @@ in
   };
 
   nix.settings.trusted-users = [ "${deploy_user}" ];
-  #security.sudo.extraRules = [
-  #  {
-  #    groups = [ "deploy" ];
-  #    commands = [
-  #      {
-  #        command = "/nix/store/*/bin/switch-to-configuration";
-  #        options = [ "NOPASSWD" ];
-  #      }
-  #      {
-  #        command = "/run/current-system/sw/bin/nix-store";
-  #        options = [ "NOPASSWD" ];
-  #      }
-  #      {
-  #        command = "/run/current-system/sw/bin/nix-env";
-  #        options = [ "NOPASSWD" ];
-  #      }
-  #    ];
-  #  }
-  #];
+  security.sudo.extraRules = [
+    {
+      groups = [ "deploy" ];
+      commands = [
+        {
+          command = "/nix/store/*/bin/switch-to-configuration";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/nix-store";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/nix-env";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 }
