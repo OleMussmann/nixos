@@ -26,6 +26,9 @@
       ../../modules/nix
       ../../modules/starship
 
+      # old bios, does not support changing EFI vars
+      ({ pkgs, ... }: { boot.loader.efi.canTouchEfiVariables = pkgs.lib.mkForce true; })
+
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
       }
     ];
