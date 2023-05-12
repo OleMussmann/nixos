@@ -25,6 +25,7 @@
       ../../modules/neovim
       ../../modules/nix
       ../../modules/starship
+      ../../modules/tailscale
 
       # old bios, does not support changing EFI vars
       ({ pkgs, ... }: { boot.loader.efi.canTouchEfiVariables = pkgs.lib.mkForce true; })
