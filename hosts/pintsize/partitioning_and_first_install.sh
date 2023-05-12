@@ -152,10 +152,6 @@ echo "# create system datasets #"
 echo "##########################"
 echo
 
-# root
-zfs create -o mountpoint=legacy rpool/nixos/root
-mount -t zfs rpool/nixos/root "${MNT}"/
-
 # home
 zfs create -o mountpoint=legacy rpool/nixos/home
 mkdir "${MNT}"/home
