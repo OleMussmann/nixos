@@ -30,7 +30,6 @@
 
       # old bios, does not support changing EFI vars
       ({ pkgs, ... }: { boot.loader.efi.canTouchEfiVariables = pkgs.lib.mkForce true; })
-      ({ pkgs, ... }: { users.extraUsers = pkgs.lib.mkForce true; })
 
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
       }
