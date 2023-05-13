@@ -50,8 +50,15 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/83c050ec-3922-4120-93f2-3ddf1f914ef7"; }
-      { device = "/dev/disk/by-uuid/f0198f20-63c4-4b2a-83c3-e1954bc06691"; }
+    [
+      {
+        device = "/dev/disk/by-partuuid/a1775cea-c621-4da2-a11e-9a0807280c4d";
+        randomEncryption.enable = true;
+      }
+      {
+        device = "/dev/disk/by-partuuid/d3067b4b-8115-48c3-bd4d-c8ea2e4a596a";
+        randomEncryption.enable = true;
+      }
     ];
 
   # ZFS settings
