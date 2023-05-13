@@ -30,8 +30,8 @@
         };
         shellAliases = {
           trash = "gio trash";
-          update = "nix flake update --commit-lock-file /home/ole/.system";
-          upgrade = "sudo nixos-rebuild switch --flake /home/ole/.system &&
+          update = "nix flake update --commit-lock-file /home/${user}/.system";
+          upgrade = "sudo nixos-rebuild switch --flake /home/${user}/.system &&
             nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link | tail -n 2)";
         };
         interactiveShellInit = ''
