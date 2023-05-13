@@ -1,9 +1,12 @@
 { pkgs, ... }:
+let
+  deploy_user = "deploy";
+in
 {
-
-  users.users.root = {
-    isNormalUser = true;
-    passwordFile = "/persist/passwords/root";
+  users.groups.${deploy_user} = { };
+  users.extraUsers.${deploy_user} = {
+    isSystemUser = true;
+    group = "${deploy_user}";
     shell = pkgs.bash;
 
     openssh.authorizedKeys.keys = [
@@ -11,36 +14,24 @@
     ];
   };
 
-  #nix.settings.trusted-users = [ "${deploy_user}" ];
-  #security.sudo.extraRules = [
-  #  {
-  #    groups = [ "deploy" ];
-  #    commands = [
-  #      {
-  #        command = "/nix/store/*/bin/switch-to-configuration";
-  #        options = [ "NOPASSWD" ];
-  #      }
-  #      {
-  #        command = "/run/current-system/sw/bin/nix-store";
-  #        options = [ "NOPASSWD" ];
-  #      }
-  #      {
-  #        command = "/run/current-system/sw/bin/nix-env";
-  #        options = [ "NOPASSWD" ];
-  #      }
-  #      {
-  #        command = "${pkgs.systemd}/bin/systemctl";
-  #        options = [ "NOPASSWD" ];
-  #      }
-  #      #{
-  #      #  command = "${pkgs.systemd}/bin/systemctl start '/dev-disk-by*.swap'";
-  #      #  options = [ "NOPASSWD" ];
-  #      #}
-  #      #{
-  #      #  command = "${pkgs.systemd}/bin/systemctl start '/dev-disk-by*.device'";
-  #      #  options = [ "NOPASSWD" ];
-  #      #}
-  #    ];
-  #  }
-  #];
+  nix.settings.trusted-users = [ "${deploy_user}" ];
+  security.sudo.extraRules = [
+    {
+      groups = [ "deploy" ];
+      commands = [
+        {
+          command = "/nix/store/*/bin/switch-to-configuration";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/nix-store";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/nix-env";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 }
