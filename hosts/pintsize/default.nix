@@ -38,6 +38,18 @@
         ];
       })
 
+      # configure a borg backup server
+      ({ ... }: {
+        services.borgbackup.repos = {
+          my_borg_repo = {
+            authorizedKeys = [
+              ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIowh+y+0ozQh+dLj5VFGxh/s0WjvRCQEThRX6h+STzY ole@work''
+              ] ;
+              path = "/backups/ole/nixos-work-laptop" ;
+            };
+          };
+      })
+
       home-manager.nixosModules.home-manager {              # Home-Manager module that is used.
       }
     ];
