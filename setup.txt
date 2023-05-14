@@ -1,3 +1,10 @@
+## NOTES
+
+- set zfs mountpoints=legacy
+  - also for root!
+- create empty root snapshot
+  - zfs snapshot rpool/nixos@blank
+
 ## create vm
 
 - create vm in virt manager
