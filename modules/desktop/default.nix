@@ -12,12 +12,12 @@
         keepassxc        # Password manager
         libreoffice      # Office packages
         nextcloud-client # File sync
-        pika-backup      # borg frontend
         todoist-electron # Todo app
         transmission     # Torrent client
         xorg.xkill       # Kill applications
 
         # Applications from unstable channel
+        unstable.pika-backup      # borg frontend
         #unstable.logseq           # knowledge base
 
         # Rollbacks
