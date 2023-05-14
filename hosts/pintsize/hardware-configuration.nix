@@ -29,7 +29,7 @@
     };
   # use blank snapshot for every boot
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r rpool/local/root@blank
+    zfs rollback -r rpool/nixos@blank
   '';
   ##### ⬆️  or use this block for zfs    #####
   ##### 💽 END root filesystem choice   #####
