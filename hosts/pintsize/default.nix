@@ -34,7 +34,8 @@
       # authorized SSH key for remote_deploy
       ({ ... }: {
         users.extraUsers.deploy.openssh.authorizedKeys.keys = [
-          ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIowh+y+0ozQh+dLj5VFGxh/s0WjvRCQEThRX6h+STzY ole@work''
+          ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIowh+y+0ozQh+dLj5VFGxh/s0WjvRCQEThRX6h+STzY ole@work''  # nixos work laptop
+          ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOhchwfyk9oy8QX7U/fJsrgH5DuQvomUpvpi6qKf/ozw ole@isbjorngames.com''  # ubuntu private PC
         ];
       })
 
