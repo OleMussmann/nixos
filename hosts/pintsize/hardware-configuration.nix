@@ -39,6 +39,11 @@
       fsType = "zfs";
     };
 
+  fileSystems."/backups" =
+    { device = "rpool/nixos/backups";
+      fsType = "zfs";
+    };
+
   fileSystems."/home" =
     { device = "rpool/nixos/home";
       fsType = "zfs";
