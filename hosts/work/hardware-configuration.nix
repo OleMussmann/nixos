@@ -13,11 +13,26 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  ##### 💽 START root filesystem choice #####
+  ##### ⬇️  use this block for tmpfs     #####
+  #fileSystems."/" =
+  #  { device = "none";
+  #    fsType = "tmpfs";
+  #    options = [ "defaults" "size=2G" "mode=755" ];
+  #  };
+  ##### ⬆️  use this block for tmpfs     #####
+
+  ##### ⬇️  or use this block for zfs    #####
   fileSystems."/" =
-    { device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" "size=6G" "mode=755" ];
+    { device = "rpool/nixos";
+      fsType = "zfs";
     };
+  # use blank snapshot for every boot
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r rpool/nixos@blank
+  '';
+  ##### ⬆️  or use this block for zfs    #####
+  ##### 💽 END root filesystem choice   #####
 
   fileSystems."/nix" =
     { device = "rpool/nixos/nix";
