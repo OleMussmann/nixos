@@ -1,12 +1,9 @@
 { pkgs, ... }:
-let
-  deploy_user = "deploy";
-in
 {
-  users.groups.${deploy_user} = { };
-  users.extraUsers.${deploy_user} = {
+  users.groups.deploy = { };
+  users.extraUsers.deploy = {
     isSystemUser = true;
-    group = "${deploy_user}";
+    group = "deploy";
     shell = pkgs.bash;
 
     openssh.authorizedKeys.keys = [
@@ -14,7 +11,7 @@ in
     ];
   };
 
-  nix.settings.trusted-users = [ "${deploy_user}" ];
+  nix.settings.trusted-users = [ "deploy" ];
   security.sudo.extraRules = [
     {
       groups = [ "deploy" ];
