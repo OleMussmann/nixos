@@ -7,7 +7,7 @@
     shell = pkgs.bash;
 
     openssh.authorizedKeys.keys = [
-      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIowh+y+0ozQh+dLj5VFGxh/s0WjvRCQEThRX6h+STzY ole@work''
+      # set this in your host file
     ];
   };
 
