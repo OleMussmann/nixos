@@ -1,4 +1,3 @@
-- delete channels
 - agenix
 - deezer
 - configure nvim
