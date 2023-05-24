@@ -13,6 +13,7 @@
     specialArgs = { inherit inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
     modules = [                                             # Modules that are used
       ./hardware-configuration.nix
+      ../../modules/auto_update
       ../../modules/base
       ../../modules/impermanence
 
