@@ -112,8 +112,8 @@
                 -- { name = 'snippy' }, -- For snippy users.
               }, {
                 { name = 'buffer' },
-                { name = 'cmdline' },
-                { name = 'cmdline-history' },
+                -- { name = 'cmdline' },
+                -- { name = 'cmdline-history' },
                 { name = 'path' },
               })
             })
@@ -123,8 +123,8 @@
         nvim-lspconfig
         cmp-nvim-lsp
         cmp-buffer
-        cmp-cmdline
-        cmp-cmdline-history
+        #cmp-cmdline
+        #cmp-cmdline-history
         cmp-path
         cmp-treesitter                   # use treesitter for nvim-cmp
 
