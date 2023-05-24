@@ -5,6 +5,7 @@
       packages = with pkgs; [
         discord
         element-desktop
+        signal-desktop
         slack-dark
         zoom-us
       ]
