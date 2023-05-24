@@ -8,5 +8,4 @@
 - zoxide
 - ruff
 - (study neovim-ide)
-- exa
 - skim
