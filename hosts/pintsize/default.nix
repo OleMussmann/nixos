@@ -14,7 +14,6 @@
     modules = [                                             # Modules that are used
       ./hardware-configuration.nix
       ../../modules/base
-      ../../modules/desktop
       ../../modules/impermanence
 
       ../../modules/docker
