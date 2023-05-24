@@ -1,10 +1,6 @@
-- delete channels
-- fix 'user' inconsistencies
 - agenix
 - deezer
 - configure nvim
-- ZFS snapshots
-- wipeclean https://github.com/JeanJouliaCode/wipeClean
 
 # for the future
 - mcfly
@@ -12,5 +8,4 @@
 - zoxide
 - ruff
 - (study neovim-ide)
-- exa
 - skim

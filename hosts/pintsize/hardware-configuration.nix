@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -39,6 +39,11 @@
       fsType = "zfs";
     };
 
+  fileSystems."/backups" =
+    { device = "rpool/nixos/backups";
+      fsType = "zfs";
+    };
+
   fileSystems."/home" =
     { device = "rpool/nixos/home";
       fsType = "zfs";
@@ -60,17 +65,25 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E960-6E50";
+    { device = "/dev/disk/by-uuid/EE0E-F143";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/db239724-829c-4696-ae16-c72845b84419"; }
+    [
+      {
+        device = "/dev/disk/by-partuuid/a1775cea-c621-4da2-a11e-9a0807280c4d";
+        randomEncryption.enable = true;
+      }
+      {
+        device = "/dev/disk/by-partuuid/d3067b4b-8115-48c3-bd4d-c8ea2e4a596a";
+        randomEncryption.enable = true;
+      }
     ];
 
   # ZFS settings
   boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "aa3e43dd";
+  networking.hostId = "362a7070";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.zfs.devNodes = "/dev/disk/by-path";
   services.zfs.autoScrub.enable = true;
@@ -81,7 +94,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ens3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
