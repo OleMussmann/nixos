@@ -11,6 +11,7 @@
         inkscape         # Vector graphical editor
         keepassxc        # Password manager
         libreoffice      # Office packages
+        #logseq           # knowledge base
         nextcloud-client # File sync
         todoist-electron # Todo app
         transmission     # Torrent client
@@ -40,6 +41,11 @@
   programs = {
     partition-manager.enable = true;
   };
+
+  # temporarily allow older electron package for logseq TODO
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-21.4.0"
+  ];
 }
 
 
