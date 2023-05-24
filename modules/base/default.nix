@@ -19,7 +19,6 @@
         # nps
         NIX_PACKAGE_SEARCH_FLIP = "true";
         NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
-        NIX_PACKAGE_SEARCH_SHOW_PACKAGE_DESCRIPTION = "false";
       };
     };
     programs = {
