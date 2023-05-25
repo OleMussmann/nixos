@@ -54,10 +54,13 @@
     };
   in
   {
-    nixosConfigurations = {
-      work = (import ./hosts/work { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }).work;
-      nixos-vm = (import ./hosts/nixos-vm { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }).nixos-vm;
-      pintsize = (import ./hosts/pintsize { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }).pintsize;
-    };
+    nixosConfigurations =
+    let
+      hosts = builtins.readDir ./hosts;
+      mkHost = path: nixpkgs.lib.nixosSystem (
+        import path { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }
+        );
+    in
+    builtins.mapAttrs ( name: _: mkHost ./hosts/${name} ) hosts;
   };
 }
