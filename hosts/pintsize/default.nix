@@ -2,12 +2,10 @@
 let
   user = "ole";
   hostname = "pintsize";
-  system = "x86_64-linux";
   timezone = "Europe/Amsterdam";
   defaultlocale = "en_US.UTF-8";
 in
 {
-  inherit system;
   specialArgs = { inherit inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
   modules = [                                             # Modules that are used
     ./hardware-configuration.nix
