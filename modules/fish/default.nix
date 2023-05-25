@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, system, user, overlays, ... }:
+{ pkgs, user, ... }:
 {
   users.users.${user}.shell = pkgs.fish;
 

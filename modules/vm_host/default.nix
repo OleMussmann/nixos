@@ -1,4 +1,4 @@
-{ pkgs, config, user, lib, ... }:
+{ pkgs, config, ... }:
 {
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
