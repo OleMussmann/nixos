@@ -1,4 +1,4 @@
-{ lib, inputs, overlays, ... }:
+{ lib, inputs, overlays, self, ... }:
 
 {
   # WORKAROUND
@@ -39,4 +39,9 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
+
+  # Use the git commit hash as configurationRevision, this way we always know
+  # the build config that was used for the current system. Query this with
+  # `nixos-version --json`
+  system.configurationRevision = self.sourceInfo.rev;
 }

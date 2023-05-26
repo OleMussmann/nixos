@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, home-manager, overlays, nur, ... }:
+{ self, inputs, nixpkgs, home-manager, overlays, nur, ... }:
 let
   user = "ole";
   hostname = "pintsize";
@@ -6,7 +6,7 @@ let
   defaultlocale = "en_US.UTF-8";
 in
 {
-  specialArgs = { inherit inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
+  specialArgs = { inherit self inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
   modules = [                                             # Modules that are used
     ./hardware-configuration.nix
     ../../modules/auto_upgrade

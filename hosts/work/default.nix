@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, home-manager, nixos-hardware, overlays, nur, ... }:
+{ self, inputs, nixpkgs, home-manager, nixos-hardware, overlays, nur, ... }:
 let
   user = "ole";
   hostname = "work";
@@ -6,7 +6,7 @@ let
   defaultlocale = "en_US.UTF-8";
 in
 {
-  specialArgs = { inherit inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
+  specialArgs = { inherit self inputs user overlays nur hostname timezone defaultlocale; };                 # Pass flake variable
   modules = [                                             # Modules that are used
     nixos-hardware.nixosModules.dell-xps-13-9310
     ./hardware-configuration.nix
