@@ -55,12 +55,14 @@
   in
   {
     nixosConfigurations =
-    let
-      hosts = builtins.readDir ./hosts;
-      mkHost = path: nixpkgs.lib.nixosSystem (
-        import path { inherit inputs nixpkgs home-manager nixos-hardware overlays nur; }
+      let
+        hosts = builtins.readDir ./hosts;
+        mkHost = path: nixpkgs.lib.nixosSystem (
+          import path {
+            inherit inputs nixpkgs self home-manager nixos-hardware overlays nur;
+          }
         );
-    in
-    builtins.mapAttrs ( name: _: mkHost ./hosts/${name} ) hosts;
-  };
+      in
+      builtins.mapAttrs ( name: _: mkHost ./hosts/${name} ) hosts;
+    };
 }
