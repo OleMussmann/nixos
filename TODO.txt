@@ -1,6 +1,7 @@
 - agenix
 - deezer
 - configure nvim
+- nix-index-database
 
 # for the future
 - mcfly
