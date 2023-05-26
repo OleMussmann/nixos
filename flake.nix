@@ -22,6 +22,10 @@
     entangled.url = "github:entangled/entangled";
     entangled.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Kaomoji
+    kaomoji.url = "github:OleMussmann/kaomoji";
+    kaomoji.inputs.nixpkgs.follows = "nixpkgs";
+
     # fzf_search
     fzf-search.url = "github:suvayu/fzf_search";
     fzf-search.inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +54,7 @@
         entangled = inputs.entangled.defaultPackage.${prev.system};
         fzf-search = inputs.fzf-search.packages.${prev.system}.fzf-search;
         wipeclean = inputs.wipeclean.packages.${prev.system}.wipeclean;
+        kaomoji = inputs.kaomoji.packages.${prev.system}.kaomoji;
       };
     };
   in

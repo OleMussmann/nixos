@@ -64,6 +64,7 @@
 
     # out-of-tree packages
     out-of-tree.nps  # nix package search
+    out-of-tree.kaomoji  # kaomoji generator
 
     # unstable packages
     unstable.comma            # run programs without installing them
