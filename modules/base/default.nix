@@ -43,7 +43,7 @@
     bat              # `cat` with syntax highlighting
     broot            # better `tree`
     btop             # system monitor
-    comma            # run programs without installing them
+    #comma            # run programs without installing them
     cookiecutter     # coding templates
     exa              # better `ls`
     fd               # better `find`
@@ -64,6 +64,9 @@
 
     # out-of-tree packages
     out-of-tree.nps  # nix package search
+
+    # unstable packages
+    unstable.comma            # run programs without installing them
   ];
 
   programs = {
