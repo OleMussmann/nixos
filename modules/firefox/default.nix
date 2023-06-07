@@ -31,17 +31,17 @@
           "signon.rememberSignons" = false;
           "browser.newtabpage.pinned" = "[{\"url\":\"https://www.heise.de/\",\"label\":\"heise\"},{\"url\":\"https://www.golem.de/\",\"label\":\"golem\"},{\"url\":\"https://tweakers.net/\",\"label\":\"tweakers\"},{\"url\":\"https://arstechnica.com/\"},{\"url\":\"https://www.phoronix.com/\",\"label\":\"phoronix\"},{\"url\":\"https://www.theverge.com/\"},{\"url\":\"https://www.engadget.com\",\"label\":\"engadget\"},{\"url\":\"https://www.trustedreviews.com/\",\"label\":\"trustedreviews\"},{\"url\":\"https://www.theregister.com/\",\"label\":\"theregister\"},{\"url\":\"https://search.nixos.org/\",\"label\":\"search.nixos\"},{\"url\":\"https://nix-community.github.io/home-manager/options.html\",\"label\":\"nix-community\"}]";
         };
+        extensions = with config.nur.repos.rycee.firefox-addons; [
+          consent-o-matic
+          darkreader
+          duckduckgo-privacy-essentials
+          gsconnect
+          keepassxc-browser
+          tridactyl
+          ublock-origin
+          vimium
+        ];
       };
-      extensions = with config.nur.repos.rycee.firefox-addons; [
-        consent-o-matic
-        darkreader
-        duckduckgo-privacy-essentials
-        gsconnect
-        keepassxc-browser
-        tridactyl
-        ublock-origin
-        vimium
-      ];
 
       package = pkgs.firefox.override {
         # See nixpkgs' firefox/wrapper.nix to check which options you can use
