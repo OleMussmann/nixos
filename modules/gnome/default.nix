@@ -60,6 +60,7 @@
           "drive-menu@gnome-shell-extensions.gcampax.github.com"
           "appindicatorsupport@rgcjonas.gmail.com"
           "caffeine@patapon.info"
+          "gsconnect@andyholmes.github.io"
         ];
       };
 
