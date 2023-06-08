@@ -1,6 +1,7 @@
 { pkgs, user, ... }:
 {
   users.users.${user}.shell = pkgs.fish;
+  programs.fish.enable = true;
 
   # add fish to /etc/shells
   # otherwise GDM does not show users with fish

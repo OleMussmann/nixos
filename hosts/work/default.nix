@@ -31,13 +31,6 @@ in
 
     # temporarily fix for eduroam TODO
     ({ config, pkgs, lib, ... }: {
-      nixpkgs.overlays = [( self: super:
-        {
-          wpa_supplicant = super.wpa_supplicant.overrideAttrs ( old: rec {
-            buildInputs = super.lib.lists.remove super.openssl old.buildInputs ++ [ self.openssl_1_1 ];
-          });
-        }
-      )];
     })
 
     home-manager.nixosModules.home-manager {              # Home-Manager module that is used.

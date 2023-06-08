@@ -1,17 +1,8 @@
-From e7e2d1929a03dfdb0751343708d3311db0a9c400 Mon Sep 17 00:00:00 2001
-From: ole <gitlab+account@ole.mn>
-Date: Sat, 10 Dec 2022 07:04:58 +0100
-Subject: [PATCH] theme template
-
----
- src/kgx-terminal.c | 64 ++++++++++++++++++++++++++++++----------------
- 1 file changed, 42 insertions(+), 22 deletions(-)
-
 diff --git a/src/kgx-terminal.c b/src/kgx-terminal.c
-index 26ca81d..85339f0 100644
+index 25d3df0..0cf2009 100644
 --- a/src/kgx-terminal.c
 +++ b/src/kgx-terminal.c
-@@ -113,24 +113,42 @@ update_terminal_colors (KgxTerminal *self)
+@@ -137,25 +137,44 @@ update_terminal_colours (KgxTerminal *self)
    GdkRGBA fg;
    GdkRGBA bg;
  
@@ -51,7 +42,7 @@ index 26ca81d..85339f0 100644
 +    GDK_RGBA ("5d5db1"), // Bright Magenta
 +    GDK_RGBA ("2d8f6f"), // Bright Cyan
 +    GDK_RGBA ("ebf8ff"), // Bright White
-+  };
+   };
 +  GdkRGBA dark_palette[16] = {
 +    GDK_RGBA ("282A2E"), // Black
 +    GDK_RGBA ("A54242"), // Red
@@ -69,11 +60,13 @@ index 26ca81d..85339f0 100644
 +    GDK_RGBA ("B294BB"), // Bright Magenta
 +    GDK_RGBA ("8ABEB7"), // Bright Cyan
 +    GDK_RGBA ("C5C8C6"), // Bright White
-   };
++  };
++
  
-   if (self->theme == KGX_THEME_AUTO) {
-@@ -151,14 +169,16 @@ update_terminal_colors (KgxTerminal *self)
-       bg = (GdkRGBA) { 0.05, 0.05, 0.05, 0.96 };
+   if (!self->settings) {
+     return;
+@@ -181,14 +200,16 @@ update_terminal_colours (KgxTerminal *self)
+       bg = (GdkRGBA) { 0.05, 0.05, 0.05, 1.0 };
        break;
      case KGX_THEME_DAY:
 -      fg = (GdkRGBA) { 0.0, 0.0, 0.0, 0.0 };
@@ -86,12 +79,10 @@ index 26ca81d..85339f0 100644
      case KGX_THEME_AUTO:
      default:
 -      fg = (GdkRGBA) { 1.0, 1.0, 1.0, 1.0};
--      bg = (GdkRGBA) { 0.05, 0.05, 0.05, 0.96 };
+-      bg = (GdkRGBA) { 0.12, 0.12, 0.12, 1.0 };
 +      fg = (GdkRGBA) { 0.773, 0.784, 0.776, 1.00 };
 +      bg = (GdkRGBA) { 0.114, 0.122, 0.129, 0.97 };
 +      memcpy(palette, dark_palette, sizeof(dark_palette));
        break;
    }
  
--- 
-2.38.1
