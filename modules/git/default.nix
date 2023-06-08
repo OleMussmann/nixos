@@ -9,9 +9,9 @@
       diff-so-fancy.enable = true;
       extraConfig = {
         init.defaultBranch = "main";
-        diff.tool = "vimdiff3";
+        diff.tool = "nvimdiff3";
         difftool.vimdiff3.path = "nvim";
-        merge.tool = "vimdiff";
+        merge.tool = "nvimdiff";
         merge.conflictStyle = "diff3";
       };
     };
