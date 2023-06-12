@@ -45,12 +45,10 @@ in
     # Only use SSH via keys
     ({ ... }: {
       services.openssh = {
-        settings = {
-          PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
-          PermitRootLogin = "no";
+          passwordAuthentication = false;
+          kbdInteractiveAuthentication = false;
+          permitRootLogin = "no";
         };
-      };
     })
 
     # configure a borg backup server
