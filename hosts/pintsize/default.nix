@@ -44,10 +44,10 @@ in
 
     # Only use SSH via keys
     ({ ... }: {
-      services.openssh = {
-          passwordAuthentication = false;
-          kbdInteractiveAuthentication = false;
-          permitRootLogin = "no";
+      services.openssh.settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          PermitRootLogin = "no";
         };
     })
 
