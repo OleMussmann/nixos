@@ -44,7 +44,7 @@ in
 
     # Only use SSH via keys
     ({ ... }: {
-      services.openssh = {
+      services.openssh.settings = {
           passwordAuthentication = false;
           kbdInteractiveAuthentication = false;
           permitRootLogin = "no";
