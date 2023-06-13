@@ -1,15 +1,9 @@
 { pkgs, user, ... }:
-let kgx_patched = pkgs.kgx.overrideAttrs(
-  oldAttrs: {
-    patches = [ ../../patches/kgx/atelierlakeside.alpha_0.97.hybrid.alpha_0.97.patch ];
-  }
-);
-in
 {
   home-manager.users.${user} = {
     home = {
       packages = with pkgs; [
-        kgx_patched
+        kgx-themed
       ];
     };
     dconf.settings = {
