@@ -27,9 +27,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [
-      overlays
-    ];
+    overlays = overlays;
   };
 
   # This value determines the NixOS release from which the default

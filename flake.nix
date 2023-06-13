@@ -47,16 +47,19 @@
   # Output config, or config for NixOS system
   outputs = { self, nixpkgs, home-manager, nixos-hardware, nur, ... }@inputs:
   let
-    overlays = final: prev: {
-      unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
-      out-of-tree = {
-        nps = inputs.nps.defaultPackage.${prev.system};
-        entangled = inputs.entangled.defaultPackage.${prev.system};
-        fzf-search = inputs.fzf-search.packages.${prev.system}.fzf-search;
-        wipeclean = inputs.wipeclean.packages.${prev.system}.wipeclean;
-        kaomoji = inputs.kaomoji.packages.${prev.system}.kaomoji;
-      };
-    };
+    overlays = [
+      (final: prev: {
+        unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
+        out-of-tree = {
+          nps = inputs.nps.defaultPackage.${prev.system};
+          entangled = inputs.entangled.defaultPackage.${prev.system};
+          fzf-search = inputs.fzf-search.packages.${prev.system}.fzf-search;
+          wipeclean = inputs.wipeclean.packages.${prev.system}.wipeclean;
+          kaomoji = inputs.kaomoji.packages.${prev.system}.kaomoji;
+        };
+      })
+      (import ./overlays/logseq-0.9.0)
+    ];
   in
   {
     nixosConfigurations =

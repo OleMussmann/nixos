@@ -22,7 +22,7 @@
         #unstable.logseq           # knowledge base
 
         # Rollbacks
-        (callPackage ../../rollbacks/logseq-0.9.0 {})           # knowledge base
+        logseq-0_9_0           # knowledge base
 
         # Applications from out-of-tree repos
         out-of-tree.entangled
