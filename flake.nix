@@ -58,6 +58,7 @@
           kaomoji = inputs.kaomoji.packages.${prev.system}.kaomoji;
         };
       })
+      (import ./overlays/eduroam)
       (import ./overlays/logseq-0.9.0)
     ];
   in
