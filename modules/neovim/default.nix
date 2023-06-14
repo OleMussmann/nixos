@@ -66,13 +66,13 @@
           '';
         }
         # toggleterm
-        {
-          plugin = toggleterm-nvim;
-          type = "lua";
-          config = ''
-            require('toggleterm').setup()
-          '';
-        }
+        #{
+        #  plugin = toggleterm-nvim;
+        #  type = "lua";
+        #  config = ''
+        #    require('toggleterm').setup()
+        #  '';
+        #}
         nerdcommenter                    # better commenting
         #null-ls-nvim                     # make non-lsp plugins hook into lsp
         #nvim-dap                         # debug adapter protocol, dependency for telescope-dap-nvim
