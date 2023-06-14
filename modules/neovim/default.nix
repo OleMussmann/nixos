@@ -64,7 +64,15 @@
             }
             )
           '';
-        } # Status Line
+        }
+        # toggleterm
+        {
+          plugin = toggleterm-nvim;
+          type = "lua";
+          config = ''
+            require('toggleterm').setup()
+          '';
+        }
         nerdcommenter                    # better commenting
         #null-ls-nvim                     # make non-lsp plugins hook into lsp
         #nvim-dap                         # debug adapter protocol, dependency for telescope-dap-nvim
@@ -141,7 +149,6 @@
         #telescope-nvim                   # fuzzy finder
         #telescope-symbols-nvim           # pick and insert symbols
         #telescope-ultisnips-nvim         # smart snippets
-        #toggleterm-nvim                  # quick terminal
         tokyonight-nvim                  # theme
         vim-nix                          # syntax highlighting for nix
         #vim-fugitive                     # git integration
