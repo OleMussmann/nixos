@@ -19,6 +19,7 @@ in
     ../../modules/fingerprint_reader_goodix
     ../../modules/firefox
     ../../modules/fish
+    ../../modules/gaming
     ../../modules/git
     ../../modules/gnome
     ../../modules/kgx
