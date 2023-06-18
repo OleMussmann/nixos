@@ -5,7 +5,6 @@
       packages = with pkgs; [
         appimage-run     # Runs AppImages on NixOS
         chromium         # Browser
-        expressvpn       # VPN
         ffmpeg           # Video support
         gimp             # Graphical editor
         handbrake        # Encoder
@@ -47,10 +46,4 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-21.4.0"
   ];
-
-  services = {
-    expressvpn.enable = true;
-  };
 }
-
-
