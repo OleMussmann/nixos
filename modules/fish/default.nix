@@ -49,6 +49,9 @@
         fuzzySearchFactor = 2;
         keyScheme = "vim";
       };
+      zoxide = {
+        enable = true;
+      };
     };
   };
 }

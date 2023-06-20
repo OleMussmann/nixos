@@ -4,9 +4,7 @@
 - nix-index-database
 
 # for the future
-- mcfly
 - navi
-- zoxide
 - ruff
 - (study neovim-ide)
 - skim
