@@ -39,7 +39,15 @@
           set fish_greeting ""
           fish_vi_key_bindings
           any-nix-shell fish | source
+
+          mcfly init fish | source
+          mcfly_key_bindings
         '';
+      };
+      mcfly = {
+        enable = true;
+        fuzzySearchFactor = 2;
+        keyScheme = "vim";
       };
     };
   };
