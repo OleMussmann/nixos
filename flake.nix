@@ -60,7 +60,6 @@
       })
       (import ./overlays/eduroam)
       (import ./overlays/kgx-themed)
-      (import ./overlays/logseq-0.9.0)
     ];
   in
   {
