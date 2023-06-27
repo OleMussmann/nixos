@@ -11,7 +11,6 @@
         inkscape         # Vector graphical editor
         keepassxc        # Password manager
         libreoffice      # Office packages
-        #logseq           # knowledge base
         nextcloud-client # File sync
         todoist-electron # Todo app
         transmission     # Torrent client
@@ -19,10 +18,10 @@
 
         # Applications from unstable channel
         unstable.pika-backup      # borg frontend
-        #unstable.logseq           # knowledge base
+        unstable.logseq           # knowledge base
 
         # Rollbacks
-        logseq-0_9_0           # knowledge base
+        #logseq-0_9_0           # knowledge base
 
         # Applications from out-of-tree repos
         out-of-tree.entangled
