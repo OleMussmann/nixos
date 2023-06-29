@@ -27,6 +27,10 @@
         set tabstop=2
         set softtabstop=2
         set shiftwidth=2
+
+        " folding
+        set foldmethod=expr
+        set foldexpr=nvim_treesitter#fold_expr()
       '';
       extraPackages = with pkgs; [
         gcc
@@ -67,6 +71,20 @@
             )
           '';
         }
+        {
+          plugin = nvim-treesitter-pyfold;          # sane folding for python
+          type = "lua";
+          config = ''
+            packadd! nvim-treesitter-pyfold
+            require('nvim-treesitter.configs').setup(
+            {
+                pyfold = {
+                  enable = true,
+                  custom_foldtext = true
+                }
+            })
+          '';
+        }
         # toggleterm
         #{
         #  plugin = toggleterm-nvim;
@@ -81,7 +99,6 @@
         #nvim-surround                    # surround selections
         nvim-treesitter.withAllGrammars  # syntax highlighting
         nvim-treesitter-context          # show code context
-        nvim-treesitter-pyfold           # smart folding
         nvim-treesitter-refactor         # refactoring
         nvim-treesitter-textobjects      # syntax aware text-objects
 
