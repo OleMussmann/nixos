@@ -11,6 +11,8 @@
         set scrolloff=3
         set smartcase
 
+        let mapleader=" "
+
         " print invisible characters
         "set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
         set listchars=tab:→\ ,nbsp:␣,trail:•,precedes:«,extends:»
