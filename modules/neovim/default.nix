@@ -30,7 +30,8 @@
 
         " folding
         set foldmethod=expr
-        set foldexpr=nvim_treesitter#fold_expr()
+        set foldexpr=nvim_treesitter#foldexpr()
+        set nofoldenable
       '';
       extraPackages = with pkgs; [
         gcc
@@ -71,20 +72,20 @@
             )
           '';
         }
-        {
-          plugin = nvim-treesitter-pyfold;          # sane folding for python
-          type = "lua";
-          config = ''
-            packadd! nvim-treesitter-pyfold
-            require('nvim-treesitter.configs').setup(
-            {
-                pyfold = {
-                  enable = true,
-                  custom_foldtext = true
-                }
-            })
-          '';
-        }
+        #{
+        #  plugin = nvim-treesitter-pyfold;          # sane folding for python
+        #  type = "lua";
+        #  config = ''
+        #    packadd! nvim-treesitter-pyfold
+        #    require('nvim-treesitter.configs').setup(
+        #    {
+        #        pyfold = {
+        #          enable = true,
+        #          custom_foldtext = true
+        #        }
+        #    })
+        #  '';
+        #}
         # toggleterm
         #{
         #  plugin = toggleterm-nvim;
