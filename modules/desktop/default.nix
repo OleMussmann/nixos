@@ -4,6 +4,7 @@
     home = {
       packages = with pkgs; [
         appimage-run     # Runs AppImages on NixOS
+        calibre          # Manage eBooks
         chromium         # Browser
         ffmpeg           # Video support
         gimp             # Graphical editor
