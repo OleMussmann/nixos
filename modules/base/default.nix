@@ -82,6 +82,7 @@
   services = {
     openssh.enable = true;
     fwupd.enable = true;
+    resolved.enable = true;
   };
 
   boot.loader.systemd-boot.enable = true;
