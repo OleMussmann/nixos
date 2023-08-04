@@ -13,6 +13,7 @@ in
     ../../modules/base
     ../../modules/impermanence
 
+    ../../modules/calibre-web
     ../../modules/docker
     ../../modules/fish
     ../../modules/git

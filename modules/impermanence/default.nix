@@ -20,9 +20,10 @@
     };
     persistence."/persist" = {
       directories = [
-        "/var/lib/bluetooth"
         "/etc/NetworkManager/system-connections"
         "/etc/wireguard"
+        "/var/lib/bluetooth"
+        "/var/lib/calibre-web"
       ];
     };
   };
