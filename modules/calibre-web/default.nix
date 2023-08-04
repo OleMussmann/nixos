@@ -17,18 +17,14 @@
   services.avahi = {
     enable = true;
     nssmdns = true;
-    #publish = {
-    #  enable = true;
-    #  addresses = true;
-    #  domain = true;
-    #  hinfo = true;
-    #  userServices = true;
-    #  workstation = true;
-    #};
+    publish = {
+      enable = true;
+      domain = true;
+    };
   };
   services.nginx = {
     enable = true;
-    virtualHosts."pintsize" = {
+    virtualHosts."pintsize.local" = {
       locations."/calibre" = {
         extraConfig = ''
           proxy_pass http://127.0.0.1:8083;
