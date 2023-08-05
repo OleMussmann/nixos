@@ -36,5 +36,6 @@
       };
     };
   };
+  services.tailscale.useRoutingFeatures = "server";
   networking.firewall.allowedTCPPorts = [ 80 ];
 }
