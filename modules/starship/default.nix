@@ -55,17 +55,17 @@
         git_status = {
           format="[](fg:#1c252c bg:none)[$all_status$ahead_behind]($style)[](fg:#1c252c bg:#1c252c)[](fg:#67afc1 bg:#1c252c)[ ](fg:#1c252c bg:#67afc1)[](fg:#67afc1 bg:none) ";
           style = "fg:#d9d7d6 bg:#1c252c";
-          conflicted = "=";
-          ahead = "⇡\${count}";
-          behind = "⇣\${count}";
-          diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
-          up_to_date = "";
-          untracked = "?\${count}";
-          stashed = "";
-          modified = "!\${count}";
-          staged = "+\${count}";
-          renamed = "»\${count}";
-          deleted = "\${count}";
+          conflicted = "󱠇 ";
+          ahead = "⇡\${count} ";
+          behind = "⇣\${count} ";
+          diverged = " ⇡\${ahead_count} ⇣\${behind_count} ";
+          up_to_date = " ";
+          untracked = "󱀣\${count} ";
+          stashed = " ";
+          modified = "\${count} ";
+          staged = "\${count} ";
+          renamed = "\${count} ";
+          deleted = "󰧧\${count} ";
         };
         git_commit = {
           format = "[\\($hash\\)]($style) [\\($tag\\)]($style)";
