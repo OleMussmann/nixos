@@ -1,7 +1,7 @@
 { self, inputs, nixpkgs, home-manager, nixos-hardware, overlays, nur, ... }:
 let
   user = "ole";
-  hostname = "work";
+  hostname = "dale";
   timezone = "Europe/Amsterdam";
   defaultlocale = "en_US.UTF-8";
 in
